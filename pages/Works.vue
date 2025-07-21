@@ -103,33 +103,6 @@
                 </div>
             </section>
 
-            <!-- Trajetória JavaScript -->
-            <section class="bg-white/5 rounded-xl p-6 backdrop-blur-sm space-y-6" id="frameworks">
-                <h3 class="text-3xl font-bold text-[var(--variacao4)]">
-                    Trajetória JavaScript
-                </h3>
-                <div class="relative rounded-lg overflow-hidden">
-                    <NuxtImg 
-                        src="/imgs/TrajetoriaJS.png" 
-                        loading="lazy" 
-                        alt="Trajetória JavaScript projeto"
-                        class="w-full object-cover"
-                        quality="100"
-                    />
-                </div>
-                <p class="text-gray-300">
-                    O projeto Trajetória JavaScript foi criado com o objetivo de auxiliar pessoas que, assim como eu, estão iniciando na área de desenvolvimento web. JavaScript é uma das linguagens mais utilizadas no setor, e por isso, decidi desenvolver este site para compartilhar conhecimento e ajudar outros a trilharem esse caminho com mais facilidade.
-                    <br><br>
-                    Durante o desenvolvimento dos exercícios, aprofundei meus conhecimentos em <strong>HTML</strong>, <strong>CSS</strong> e <strong>JavaScript</strong>. Além disso, refinei minhas habilidades no uso de frameworks. Para este projeto, optei pelo <strong>Nuxt.js</strong> juntamente com <strong>TypeScript</strong>, que proporciona uma estrutura robusta e prática, facilitando a criação e organização do projeto.
-                </p>
-                <p class="text-gray-300">
-                    Os 10 primeiros exercícios de <strong>JavaScript</strong> foram um marco importante na minha jornada de aprendizado. Encarei alguns desafios com determinação e, ao superá-los, senti uma grande satisfação. A cada exercício concluído, minha confiança e compreensão da linguagem cresciam, tornando a experiência ainda mais enriquecedora.
-                </p>
-                <p class="text-gray-300">
-                    O projeto <strong>Trajetória JavaScript</strong> ainda está em desenvolvimento... 
-                </p>
-            </section>
-
             <!-- Projetos Educacionais -->
             <h2 class="text-3xl font-bold text-center mt-12 mb-8 text-[var(--variacao4)]">Projetos Educacionais</h2>
             

@@ -112,7 +112,7 @@
             </section>
 
             <!-- Seção Skills -->
-            <section class="grid md:grid-cols-2 gap-8 bg-white/5 rounded-xl p-6">
+            <section class="flex flex-col gap-8 bg-white/5 rounded-xl p-6">
                 <div class="space-y-6">
                     <h3 class="text-2xl font-bold text-[var(--variacao5)]">Hard Skills</h3>
                     <div class="space-y-4">
