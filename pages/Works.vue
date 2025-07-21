@@ -78,6 +78,7 @@
                     <NuxtLink to="https://www.figma.com/design/V5dB9WqReUtpzQO1HcqClZ/Gest%C3%A3o-de-Feedback-com-IA?node-id=0-1&t=5LiiN12eVW4WWv82-1"
                     target="_blank"
                     rel="noopener noreferrer"
+                    id="button"
                     class="text-[var(--variacao5)] font-[var(--chamadas)] hover:text-[var(--variacao5)]/90 transition-colors bg-[var(--variacao2)] hover:bg-[var(--variacao2)]/70 p-2 rounded-md">Ver Design</NuxtLink>
 
                     <div class="grid md:grid-cols-2 gap-6 mt-4">

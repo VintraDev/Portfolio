@@ -9,7 +9,7 @@
                     aria-label="Navegação para o Início"
                     class="group flex items-center font-chamadas gap-2 hover:text-white duration-100 ease-in w-full hover:bg-[var(--hover)] h-12 rounded-l-md pl-2"
                     to="/"
-                    id="home-link"
+                    id="button"
                     :class="{ 'active': isHomeActive }"
                     @click="setActiveLink('home')"
                     >
@@ -22,7 +22,7 @@
                     aria-label="Navegação para a página Sobre mim"
                     class="group flex items-center gap-2 hover:text-white text-center duration-100 ease-in w-full hover:bg-[var(--hover)] h-12 before:w-[1px] before:h-[40px] before:bg-black/50"
                     to="/About"
-                    id="about-link"
+                    id="button"
                     :class="{ 'active': isAboutActive }"
                     @click="setActiveLink('about')"
                     >
@@ -33,7 +33,7 @@
                     aria-label="Navegação para a página Meus Trabalhos"
                     class="group flex items-center gap-2 hover:text-white duration-100 ease-in w-full hover:bg-[var(--hover)] h-12 before:w-[1px] before:h-[40px] before:bg-black/50 pr-2"
                     to="/Works"
-                    id="works-link"
+                    id="button"
                     :class="{ 'active': isWorksActive }"
                     @click="setActiveLink('works')"
                     >
@@ -44,7 +44,7 @@
                     aria-label="Navegação para a página Minhas Fotos"
                     class="group flex items-center gap-2 hover:text-white duration-100 ease-in w-full ml-[-1px] hover:bg-[var(--hover)] h-12 rounded-r-md before:w-[1px] before:h-[40px] before:bg-black/50"
                     to="/Photos"
-                    id="photos-link"
+                    id="button"
                     :class="{ 'active': isPhotosActive }"
                     @click="setActiveLink('photos')"
                     >

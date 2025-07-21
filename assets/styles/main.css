@@ -66,10 +66,22 @@ header h1 {
     color: white;
 }
 
-a {
+a#button {
     font-family: var(--chamadas);
     font-weight: 600;
     font-size: clamp(1.2rem, 0.5rem + 1vw, 1.2rem);
+}
+
+a:not(#button) {
+    font-style: italic;
+}
+
+a:not(#button):hover {
+    text-decoration: underline;
+}
+
+a:not(#button):visited {
+    color: white;
 }
 
 #titulos_secoes {
