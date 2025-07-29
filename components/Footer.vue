@@ -25,6 +25,7 @@
                     <NuxtLink 
                     class="hover:text-white duration-100 ease bg-white/50 hover:bg-white/30 p-1 rounded-sm border-1 border-white/80 hover:border-white/30" 
                     to="/About"
+                    id="button"
                     aria-label="Página de Sobre Mim"
                     >
                         Sobre mim
@@ -32,6 +33,7 @@
                     <NuxtLink
                     class="hover:text-white duration-100 ease bg-white/50 hover:bg-white/30 p-1 rounded-sm border-1 border-white/80 hover:border-white/30"
                     to="/Works"
+                    id="button"
                     aria-label="Página de Meus Trabalhos"
                     >
                         Meus Trabalhos

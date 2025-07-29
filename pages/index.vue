@@ -18,6 +18,7 @@
               </p>
               <NuxtLink
                 to="/About"
+                id="button"
                 class="inline-flex justify-center items-center gap-2 px-4 py-2 rounded-lg bg-[var(--variacao3)]/70 hover:bg-[var(--variacao2)] transition-colors shadow-lg"
               >
                 <AboutIcon class="size-8 group fill-white " /> 
