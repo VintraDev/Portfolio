@@ -1,0 +1,15 @@
+import { useState } from 'react'
+
+function App() {
+  const [count, setCount] = useState(0)
+
+  return (
+    <div className='bg-black font-bold text-white p-10'>
+      <p>
+        Hello, World!
+      </p>
+    </div>
+  )
+}
+
+export default App
