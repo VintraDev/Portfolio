@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Header() {
     return (
-        <header className="fixed bg-gray-100/70 p-2 lg:p-4 shadow-md backdrop-blur-sm rounded-full left-1/2 -translate-x-1/2 top-4 border-gray-300 flex items-center justify-center">
+        <header className="fixed bg-gray-100/70 z-50 p-2 shadow-md backdrop-blur-sm rounded-full left-1/2 -translate-x-1/2 top-4 border-gray-300 flex items-center justify-center">
             <nav>
                 <ul className="flex flex-row items-center justify-center gap-2 font-medium text-lg">
                     <li className="w-30 rounded-full h-14 flex items-center justify-center hover:bg-gray-800/20 transition-colors duration-100 cursor-pointer">

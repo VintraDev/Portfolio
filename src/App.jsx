@@ -1,13 +1,12 @@
 import { useState } from 'react'
+import Hero from './components/sections/Home/Hero'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className='bg-(--primary-color) font-bold text-white p-10 mt-30'>
-      <p className='text-center text-5xl '>
-        Home
-      </p>
+    <div className=''>
+      <Hero />
     </div>
   )
 }
