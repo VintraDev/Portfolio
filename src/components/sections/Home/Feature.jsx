@@ -1,4 +1,4 @@
-import Carousel from "../../shared/carousel";
+import Carousel from "../../shared/Carousel";
 
 function Feature() {
 
