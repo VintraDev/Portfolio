@@ -2,13 +2,13 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-import Header from './components/Header.jsx'
+import Header from './components/shared/Header.jsx'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import About from './pages/about.jsx'
 import Works from './pages/Works.jsx'
 import Services from './pages/Services.jsx'
 import Gallery from './pages/Gallery.jsx'
 import Contact from './pages/Contact.jsx'
+import About from './pages/About.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

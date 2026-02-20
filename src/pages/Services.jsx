@@ -1,4 +1,4 @@
-import WorkInProgress from "../components/WorkInProgress"
+import WorkInProgress from "../components/shared/WorkInProgress"
 
 function Services() {
     return (

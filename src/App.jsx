@@ -1,12 +1,12 @@
-import { useState } from 'react'
 import Hero from './components/sections/Home/Hero'
+import Feature from './components/sections/Home/Feature'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div className=''>
+    <div>
       <Hero />
+      <Feature />
     </div>
   )
 }

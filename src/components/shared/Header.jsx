@@ -25,7 +25,7 @@ function Header() {
                         >Trabalhos</Link>
                     </li>
                     <li className="">
-                        <div className="relative w-14 hover:w-35 transition-all cursor-pointer h-14 overflow-hidden rounded-full">
+                        <div className="relative w-14 hover:w-35 transition-all cursor-pointer h-14 overflow-hidden rounded-full bg-white border border-gray-200">
                             <img src="/img/Logo White.png" className="size-full absolute object-cover object-left top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2" alt="" />
                         </div>
                     </li>
