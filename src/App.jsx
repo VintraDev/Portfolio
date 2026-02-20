@@ -5,8 +5,8 @@ function App() {
 
   return (
     <div className='bg-(--primary-color) font-bold text-white p-10 mt-30'>
-      <p>
-        Hello, World!
+      <p className='text-center text-5xl '>
+        Home
       </p>
     </div>
   )
