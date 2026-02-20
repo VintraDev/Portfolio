@@ -1,17 +1,17 @@
 function Hero() {
     return (
-        <section className="overflow-hidden px-6 md:px-10">
+        <section className="overflow-hidden px-4 md:px-10">
             <div className="relative h-screen">
 
                 <h1 className="font-montserrat text-4xl md:text-5xl lg:text-6xl font-bold md:text-center leading-snug absolute left-1/2 -translate-x-1/2 top-34 w-full md:w-130 lg:w-150">
                     Sou <span className="text-(--primary-color)">Vinicius</span> Desenvolvedor WEB
                 </h1>
 
-                <p className="w-full md:w-70 lg:w-100 text-left text-xl font-work-sans absolute md:left-10 top-60 md:bottom-100">
+                <p className="w-full md:w-70 lg:w-100 text-left text-xl font-work-sans absolute md:left-10 top-70 md:top-100">
                     "Podemos ver apenas uma curta distância à frente, mas podemos ver que há muito a ser feito." <br />— <span className="font-semibold">Alan Turing</span>
                 </p>
 
-                <p className="font-work-sans text-lg lg:text-2xl font-medium absolute md:right-10 hidden md:inline-block md:top-1/2 md:-translate-y-1/2">
+                <p className="font-work-sans text-lg lg:text-2xl font-medium absolute md:right-10 hidden md:inline-block top-100">
                     Desenvolvedor web Front End
                 </p>
 
