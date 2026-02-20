@@ -3,11 +3,11 @@ function Hero() {
         <section className="overflow-hidden px-6 md:px-10">
             <div className="relative h-screen">
 
-                <h1 className="font-montserrat text-3xl md:text-5xl lg:text-6xl font-bold md:text-center leading-snug absolute left-1/2 -translate-x-1/2 top-34 w-full md:w-130 lg:w-150">
+                <h1 className="font-montserrat text-4xl md:text-5xl lg:text-6xl font-bold md:text-center leading-snug absolute left-1/2 -translate-x-1/2 top-34 w-full md:w-130 lg:w-150">
                     Sou <span className="text-(--primary-color)">Vinicius</span> Desenvolvedor WEB
                 </h1>
 
-                <p className="w-full md:w-70 lg:w-100 text-left text-xl font-work-sans absolute md:left-10 bottom-140 md:bottom-100">
+                <p className="w-full md:w-70 lg:w-100 text-left text-xl font-work-sans absolute md:left-10 top-60 md:bottom-100">
                     "Podemos ver apenas uma curta distância à frente, mas podemos ver que há muito a ser feito." <br />— <span className="font-semibold">Alan Turing</span>
                 </p>
 
