@@ -1,5 +1,8 @@
+import { useState, useEffect } from 'react';
 
 function Carousel(items) {
+
+    
 
     return (
         <div className="w-full">
@@ -7,7 +10,7 @@ function Carousel(items) {
                 {items.items.map((item, index) => (
                     <div 
                         key={index} 
-                        className="bg-gray-100 p-3 sm:p-4 rounded-md shadow-md flex-shrink-0 w-full sm:flex-1 min-h-80 sm:min-h-96 relative flex flex-col justify-between"
+                        className="bg-gray-100 p-3 sm:p-4 rounded-md shadow-md shrink-0 w-full sm:flex-1 min-h-80 sm:min-h-96 relative flex flex-col justify-between"
                     >
                         <div className="flex-1 flex flex-col">
                             <img 

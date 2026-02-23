@@ -1,9 +1,9 @@
 function Hero() {
     return (
         <section className="overflow-hidden px-4 md:px-10">
-            <div className="relative h-screen">
+            <div className="relative h-screen min-h-220 md:min-h-240">
 
-                <h1 className="font-montserrat text-4xl md:text-5xl lg:text-6xl font-bold md:text-center leading-snug absolute left-1/2 -translate-x-1/2 top-34 w-full md:w-130 lg:w-150">
+                <h1 className="font-montserrat text-4xl md:text-5xl lg:text-6xl font-bold md:text-center leading-snug absolute left-1/2 -translate-x-1/2 top-34 w-full md:w-130 lg:w-170">
                     Sou <span className="text-(--primary-color)">Vinicius</span> Desenvolvedor WEB
                 </h1>
 

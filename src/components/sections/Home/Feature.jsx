@@ -10,12 +10,12 @@ function Feature() {
             img: 'img/cards/Clínica_Sensory.png', title: 'Site Clínica Sensory', description: 'Um site para uma clínica de saúde, com um design moderno e responsivo, utilizando Nuxt e Tailwind CSS.', linkSite: 'https://clinica-sensory.vercel.app/', linkGitHub: 'https://github.com/RosiestSloth/Clinica-Sensory'
         },
         {
-            img: 'img/cards/Feedback_Analytics.png', title: 'Feedback Analytics', description: 'Um sistema de coleta de feedbacks, com um design moderno e responsivo, utilizando React e Tailwind CSS.', linkSite: 'https://ordem-de-servicos-theta.vercel.app/dashboard', linkGitHub: 'https://github.com/RosiestSloth/Ordem-de-Servicos'
+            img: 'img/cards/Feedback_Analytics.png', title: 'Feedback Analytics', description: 'Um sistema de coleta de feedbacks, com um design moderno e responsivo, utilizando React e Tailwind CSS.', linkSite: 'https://feedback-analytics.vercel.app/', linkGitHub: 'https://github.com/RosiestSloth/Ordem-de-Servicos'
         }
     ];
 
     return (
-        <section className="bg-linear-to-br from-(--secondary-color)  to-(--terciary-color) px-6 md:px-10  py-10 md:py-20">
+        <section className="bg-linear-to-br from-(--secondary-color) to-(--tertiary-color) px-6 md:px-10 lg:px-20 py-10 md:py-16">
             <h2 className="font-montserrat text-3xl md:text-4xl lg:text-5xl font-bold text-gray-100 mb-10">
                 Meus Trabalhos
             </h2>
