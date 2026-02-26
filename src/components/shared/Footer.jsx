@@ -9,7 +9,7 @@ function Footer() {
             <div className="bg-(--tertiary-color) border-t border-gray-100 px-6 md:px-10 lg:px-20 py-8 md:py-12">
                 <div className="flex flex-col md:flex-row items-start justify-around gap-10">
                     <div className="flex-1">
-                        <img src="/img/Logo White.png" alt="Logo White" className="w-1/2 rounded-xl" />
+                        <img src="/img/Logo White.png" alt="Logo White" className="w-40 rounded-xl" />
                         <p className="font-work-sans text-gray-100 mt-4">Desenvolvedor Full Stack apaixonado por criar experiências digitais incríveis.</p>
                     </div>
                     <div className="flex-1">

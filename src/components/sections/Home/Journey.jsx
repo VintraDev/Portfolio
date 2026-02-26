@@ -1,4 +1,4 @@
-import Timeline from "./components/TimeLine";
+import Timeline from "./components/Timeline";
 
 function Journey() {
     return (
