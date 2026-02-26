@@ -1,32 +1,32 @@
 function Timeline() {
     const timelineData = [
         {
-            year: '2024',
-            title: 'Desenvolvedor Front-End',
+            year: '2022 - 2026',
+            title: 'Engenharia de Software',
+            company: 'Uni Evangélica de Anápolis - GO',
+            description: 'Formação acadêmica em Engenharia de Software, com foco em desenvolvimento, metodologias ágeis e arquitetura de software.',
+            type: 'education'
+        },
+        {
+            year: '2022 - presente',
+            title: 'Início no Desenvolvimento Web',
+            company: 'Autodidata',
+            description: 'Aprofundamento em Figma, JavaScript, React, TailwindCSS, Vue e bibliotecas modernas de front-end através de projetos práticos.',
+            type: 'education'
+        },
+        {
+            year: '2023 - presente',
+            title: 'Desenvolvedor e Suporte Técnico a websites',
             company: 'Freelancer',
-            description: 'Desenvolvimento de aplicações web modernas utilizando React, Next.js e Tailwind CSS para diversos clientes.',
+            description: 'Desenvolvimento e manutenção de websites para clientes, utilizando tecnologias modernas e garantindo uma experiência de usuário otimizada.',
             type: 'work'
         },
         {
-            year: '2023',
-            title: 'Início na Programação Web',
-            company: 'Autodidata',
-            description: 'Aprofundamento em JavaScript, React e bibliotecas modernas de front-end através de projetos práticos.',
-            type: 'education'
-        },
-        {
-            year: '2022',
-            title: 'Primeiros Passos',
-            company: 'Estudos',
-            description: 'Início dos estudos em HTML, CSS e JavaScript, construindo as bases para o desenvolvimento web.',
-            type: 'education'
-        },
-        {
-            year: '2022',
-            title: 'Primeiros Passos',
-            company: 'Estudos',
-            description: 'Início dos estudos em HTML, CSS e JavaScript, construindo as bases para o desenvolvimento web.',
-            type: 'education'
+            year: '2025 - presente',
+            title: 'Aux. Administrativo CLT',
+            company: 'Eletromotor Services LTDA.',
+            description: 'Responsável por tarefas administrativas, controle de estoque e suporte ao cliente, contribuindo para a eficiência operacional da empresa.',
+            type: 'work'
         }
     ];
 

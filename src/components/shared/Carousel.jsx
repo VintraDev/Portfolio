@@ -6,7 +6,7 @@ function Carousel(items) {
 
     return (
         <div className="w-full">
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 overflow-x-auto py-4">
+            <div className="flex flex-col md:flex-row gap-4 sm:gap-6 overflow-x-auto py-4">
                 {items.items.map((item, index) => (
                     <div 
                         key={index} 
