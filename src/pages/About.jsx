@@ -1,11 +1,10 @@
-import WorkInProgress from "../components/shared/WorkInProgress"
+import Hero from "../components/sections/About/Hero"
 
 function About() {
     return (
-        <div className='bg-(--primary-color) font-bold text-white p-10 mt-30'>
-            <p className="text-center text-5xl">Sobre</p>
-            <WorkInProgress />
-        </div>
+        <>
+            <Hero />
+        </>
     )
 }
 

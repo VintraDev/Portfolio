@@ -1,6 +1,7 @@
 function Cards({ items }) {
     return (
         <div className="flex flex-col md:flex-row gap-4 md:gap-6">
+            {/* Card map */}
             {items.map((item, index) => {
                 return (
                     <div key={index} className="border border-gray-200 shadow-md flex-1 hover:shadow-sm transition duration-100 bg-white rounded-md p-6">
