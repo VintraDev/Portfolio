@@ -9,6 +9,7 @@ import Services from './pages/Services.jsx'
 import Gallery from './pages/Gallery.jsx'
 import Contact from './pages/Contact.jsx'
 import About from './pages/About.jsx'
+import Footer from './components/shared/Footer.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -16,12 +17,13 @@ createRoot(document.getElementById('root')).render(
       <Header />
       <Routes>
         <Route path='/' element={<App />} />
-        <Route path='pages/About' element={<About />}/>
-        <Route path='pages/Works' element={<Works />}/>
+        <Route path='pages/About' element={<About />} />
+        <Route path='pages/Works' element={<Works />} />
         <Route path='pages/Services' element={<Services />} />
         <Route path='pages/Gallery' element={<Gallery />} />
         <Route path='pages/Contact' element={<Contact />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   </StrictMode>,
 )
