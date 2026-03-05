@@ -75,8 +75,8 @@ function Header() {
                 <nav>
                     <ul className="flex flex-row items-center justify-center gap-2 font-medium text-lg">
                         {navLinks.map(({ to, label }) => (
-                            <li key={to} className="w-30 rounded-full h-14 flex items-center justify-center hover:bg-gray-800/20 transition-colors duration-100 cursor-pointer">
-                                <Link to={to}>{label}</Link>
+                            <li key={to}>
+                                <Link className="w-30 rounded-full h-14 flex items-center justify-center hover:bg-gray-800/20 transition-colors duration-100 cursor-pointer" to={to}>{label}</Link>
                             </li>
                         ))}
                         <li>

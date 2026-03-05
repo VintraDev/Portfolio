@@ -52,7 +52,7 @@ function Footer() {
                     </div>
                 </div>
                 {/* Direitos Autorais */}
-                <p className="text-center text-gray-300 border-t border-t-gray pt-10 mt-10">© 2024 Vinicius Santos. Todos os direitos reservados.</p>
+                <p className="text-center text-gray-300 border-t border-t-gray pt-10 mt-10">© 2026 Vinicius Santos. Todos os direitos reservados.</p>
             </div>
         </footer>
     )
