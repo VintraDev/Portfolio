@@ -6,8 +6,8 @@ function Cards({ items, className }) {
                 return (
                     <div key={index} className={`border border-gray-300 shadow-md flex-1 hover:shadow-sm transition bg-white rounded-md p-6 flex flex-col ${className}`}>
                         <img className="size-12" src={item.image} alt={item.title} />
-                        <h3 className="font-montserrat text-lg font-semibold mt-4">{item.title}</h3>
-                        <p className="text-gray-700 mt-2 font-work-sans">{item.description}</p>
+                        <h3 className="font-montserrat text-lg font-semibold mt-4 text-(--tertiary-color)">{item.title}</h3>
+                        <p className="text-(--tertiary-color)/90 mt-2 font-work-sans">{item.description}</p>
                     </div>
                 )
             })}

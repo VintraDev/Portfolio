@@ -69,7 +69,7 @@ function SkillSection() {
     ]
 
     return (
-        <section className="px-6 md:px-10 lg:px-20 py-10 relative">
+        <section className="px-6 md:px-10 lg:px-20 py-10 relative max-w-screen overflow-hidden">
             <h2 className="font-montserrat text-3xl font-bold mb-6 text-(--tertiary-color)">
                 Hard e Soft Skills
             </h2>

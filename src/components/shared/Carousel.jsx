@@ -19,16 +19,16 @@ function Carousel(items) {
                                 alt={item.title} 
                                 className="h-40 sm:h-50 object-cover rounded-md mb-3 sm:mb-4 shadow-sm border border-gray-200 mx-auto w-full" 
                             />
-                            <h3 className="font-montserrat text-base sm:text-lg font-semibold line-clamp-2">
+                            <h3 className="font-montserrat text-base sm:text-lg font-semibold line-clamp-2 text-(--tertiary-color) mb-2">
                                 {item.title}
                             </h3>
-                            <p className="text-gray-700 text-sm sm:text-base mb-2 line-clamp-2 grow">
+                            <p className="text-(--tertiary-color)/90 text-sm sm:text-base mb-2 line-clamp-2 grow">
                                 {item.description}
                             </p>
                         </div>
                         
                         <div>
-                            <p className="text-gray-800 font-montserrat font-semibold text-sm sm:text-base mb-2">
+                            <p className="text-(--tertiary-color) font-montserrat font-semibold text-sm sm:text-base mb-2">
                                 Veja o Projeto
                             </p>
                             <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">

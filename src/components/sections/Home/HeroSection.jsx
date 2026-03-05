@@ -3,15 +3,15 @@ function Hero() {
         <section className="overflow-hidden px-4 md:px-10">
             <div className="relative h-screen min-h-220 md:min-h-240">
 
-                <h1 className="font-montserrat text-4xl md:text-5xl lg:text-6xl font-bold md:text-center leading-snug absolute left-1/2 -translate-x-1/2 top-34 w-full md:w-130 lg:w-170">
+                <h1 className="font-montserrat text-4xl md:text-5xl lg:text-6xl font-bold md:text-center leading-snug absolute left-1/2 -translate-x-1/2 top-34 w-full md:w-130 lg:w-170 text-(--tertiary-color)">
                     Sou <span className="text-(--primary-color)">Vinicius</span> Desenvolvedor WEB
                 </h1>
 
-                <p className="w-full md:w-70 lg:w-100 text-left text-xl font-work-sans absolute md:left-10 top-70 md:top-100">
+                <p className="w-full md:w-70 lg:w-100 text-left text-xl font-work-sans absolute md:left-10 top-70 md:top-100 text-(--tertiary-color)/90">
                     "Podemos ver apenas uma curta distância à frente, mas podemos ver que há muito a ser feito." <br />— <span className="font-semibold">Alan Turing</span>
                 </p>
 
-                <p className="font-work-sans text-lg lg:text-2xl font-medium absolute md:right-10 hidden md:inline-block top-100">
+                <p className="font-work-sans text-lg lg:text-2xl font-medium absolute md:right-10 hidden md:inline-block top-100 text-(--tertiary-color)/90">
                     Desenvolvedor web Front End
                 </p>
 

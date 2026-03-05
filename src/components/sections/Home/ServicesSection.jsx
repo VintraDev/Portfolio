@@ -13,7 +13,7 @@ function ServicesSection() {
             <p className="text-(--secondary-color) text-center font-work-sans text-md md:text-lg lg:text-xl font-medium mb-4">
                 O QUE FAÇO?
             </p>
-            <h3 className="text-center font-bold font-montserrat text-3xl md:text-4xl lg:text-5xl text-gray-800 mb-8 w-full md:w-120 lg:w-200">
+            <h3 className="text-center font-bold font-montserrat text-3xl md:text-4xl lg:text-5xl text-(--tertiary-color) mb-8 w-full md:w-120 lg:w-200">
                 Serviços Personalizados para Seus Objetivos
             </h3>
             <Cards 
