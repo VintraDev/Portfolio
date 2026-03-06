@@ -22,7 +22,7 @@ Um portfólio pessoal moderno e responsivo construído com Nuxt 3, Vue 3 e Tailw
 
 1. Clone o repositório:
 ```bash
-git clone [https://github.com/RosiestSloth/Portifolio]
+git clone https://github.com/RosiestSloth/Portifolio
 ```
 
 2. Instale as dependências:
