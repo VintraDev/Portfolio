@@ -16,9 +16,12 @@ function ServicesSection() {
             <h3 className="text-center font-bold font-montserrat text-3xl md:text-4xl lg:text-5xl text-(--tertiary-color) mb-8 w-full md:w-120 lg:w-200">
                 Serviços Personalizados para Seus Objetivos
             </h3>
-            <Cards 
-                items={items}
-            />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+                <Cards
+                    items={items}
+                    className="p-4"
+                />
+            </div>
         </section>
     )
 }

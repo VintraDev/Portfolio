@@ -21,8 +21,8 @@ function FeatureSection() {
     ]
 
     return (
-        <section className="px-6 md:px-10 lg:px-20 py-10 bg-linear-to-br from-(--primary-color) via-(--secondary-color) to-(--tertiary-color)">
-            <Cards items={features} />
+        <section className="px-6 md:px-10 lg:px-20 py-10 bg-linear-to-br from-(--primary-color) via-(--secondary-color) to-(--tertiary-color) grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Cards items={features} className='p-4' />
         </section>
     )
 }

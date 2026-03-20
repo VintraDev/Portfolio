@@ -25,7 +25,9 @@ function BeyondTheCodeSection() {
             <h2 className="font-montserrat text-3xl font-bold mb-6 text-(--tertiary-color)">
                 Além do Código
             </h2>
-            <Cards items={items} className='items-center' />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <Cards items={items} className='items-center p-4' />
+            </div>
         </section>
     )
 }

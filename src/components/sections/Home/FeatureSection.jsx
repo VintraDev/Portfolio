@@ -7,7 +7,7 @@ function Feature() {
             img: 'img/cards/iPhone_17_Pro_Max.png', title: 'Site iPhone 17 Pro Max', description: 'Um site de vendas de iPhones, com um design moderno e responsivo, utilizando React e Tailwind CSS.', linkSite: 'https://i-phone-17-website.vercel.app/', linkGitHub: 'https://github.com/RosiestSloth/iPhone-17-Website'
         },
         {
-            img: 'img/cards/Clínica_Sensory.png', title: 'Site Clínica Sensory', description: 'Um site para uma clínica de saúde, com um design moderno e responsivo, utilizando Nuxt e Tailwind CSS.', linkSite: 'https://clinica-sensory.vercel.app/', linkGitHub: 'https://github.com/RosiestSloth/Clinica-Sensory'
+            img: 'img/cards/Clinica_Sensory.png', title: 'Site Clínica Sensory', description: 'Um site para uma clínica de saúde, com um design moderno e responsivo, utilizando Nuxt e Tailwind CSS.', linkSite: 'https://clinica-sensory.vercel.app/', linkGitHub: 'https://github.com/RosiestSloth/Clinica-Sensory'
         },
         {
             img: 'img/cards/Feedback_Analytics.png', title: 'Feedback Analytics', description: 'Um sistema de coleta de feedbacks, com um design moderno e responsivo, utilizando React e Tailwind CSS.', linkSite: 'https://feedback-analytics.vercel.app/', linkGitHub: 'https://github.com/RosiestSloth/Ordem-de-Servicos'

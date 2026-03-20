@@ -1,13 +1,12 @@
-import WorkInProgress from "../components/shared/WorkInProgress"
+import CTASection from "../components/sections/Works/CTASection";
+import HeroSection from "../components/sections/Works/HeroSection";
 
 function Works() {
     return (
-        <div className='bg-(--primary-color) font-bold text-white p-10 mt-30'>
-            <p className='text-center text-5xl'>
-                Trabalhos
-            </p>
-            <WorkInProgress />
-        </div>
+        <>
+            <HeroSection />
+            <CTASection />
+        </>
     )
 }
 
