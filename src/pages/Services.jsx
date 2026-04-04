@@ -1,13 +1,10 @@
-import WorkInProgress from "../components/shared/WorkInProgress"
+import HeroSection from "../components/sections/Services/HeroSection"
 
 function Services() {
     return (
-        <div className='bg-(--primary-color) font-bold text-white p-10 mt-30'>
-            <p className='text-center text-5xl '>
-                Serviços
-            </p>
-            <WorkInProgress />
-        </div>
+        <>
+            <HeroSection />
+        </>
     )
 }
 
