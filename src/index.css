@@ -1,19 +1,19 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 :root {
-  --primary-color: #448EF3;
-  --secondary-color: #3863B2;
-  --tertiary-color: #182A4C;
+  --primary-color: #448ef3;
+  --secondary-color: #3863b2;
+  --tertiary-color: #182a4c;
 }
 
 .font-poppins {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .font-work-sans {
-  font-family: 'Work Sans', 'roboto', sans-serif;
+  font-family: "Work Sans", "roboto", sans-serif;
 }
 
 .font-montserrat {
-  font-family: 'Montserrat', 'Arial', sans-serif;
+  font-family: "Montserrat", "Arial", sans-serif;
 }
