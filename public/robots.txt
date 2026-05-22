@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://portifolio-taupe-beta.vercel.app/sitemap.xml

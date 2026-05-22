@@ -1,24 +1,17 @@
-# Portfólio Pessoal
+# Portfólio - React + Vite
 
-Um portfólio pessoal moderno e responsivo construído com Nuxt 3, Vue 3 e Tailwind CSS.
+Este é o meu portfólio pessoal, reconstruído utilizando React 19 e Vite para máxima performance e modernidade.
 
-## 🚀 Tecnologias
+## 🚀 Tecnologias Utilizadas
 
-- [Nuxt 3](https://nuxt.com/) - Framework Vue.js
-- [Vue 3](https://vuejs.org/) - Framework JavaScript progressivo
-- [Tailwind CSS](https://tailwindcss.com/) - Framework CSS utilitário
-- [Vite](https://vitejs.dev/) - Build tool e servidor de desenvolvimento
-- [TypeScript](https://www.typescriptlang.org/) - Superset JavaScript tipado
+- **React 19**
+- **Vite**
+- **Tailwind CSS 4**
+- **Motion** (para animações)
+- **Biome** (para linting e formatação)
+- **React Router 7**
 
-## 📦 Dependências Principais
-
-- `@nuxt/fonts` - Gerenciamento de fontes
-- `@nuxt/icon` - Sistema de ícones
-- `@nuxt/image` - Otimização de imagens
-- `tailwindcss` - Framework CSS
-- `vite-svg-loader` - Carregamento de SVGs
-
-## 🛠️ Instalação
+## 🛠️ Como executar o projeto
 
 1. Clone o repositório:
 ```bash
@@ -44,36 +37,36 @@ npm run preview
 ## 📁 Estrutura do Projeto
 
 ```
-├── assets/         # Arquivos estáticos (imagens, estilos, etc.)
-├── components/     # Componentes Vue reutilizáveis
-├── pages/          # Páginas da aplicação
-├── public/         # Arquivos públicos
-├── server/         # Configurações do servidor
-└── nuxt.config.ts  # Configuração do Nuxt
+├── src/
+│   ├── components/     # Componentes React (Sections e Shared)
+│   ├── pages/          # Páginas da aplicação
+│   ├── index.css       # Estilos globais (Tailwind CSS 4)
+│   └── main.jsx        # Ponto de entrada
+├── public/             # Arquivos estáticos (imagens, SVGs)
+└── vite.config.js      # Configuração do Vite
 ```
 
-## 🎨 Componentes
+## 🎨 Componentes Principais
 
-O projeto utiliza componentes Vue modernos e acessíveis, incluindo:
-
-- `Header.vue` - Navegação principal com ícones SVG
-- Outros componentes personalizados
+- `HeroSection.jsx` - Seção de destaque em cada página
+- `GalleryPage.jsx` - Portfólio de projetos e fotografias
+- `SkillSection.jsx` - Exibição de habilidades técnicas
+- `Contact/HeroSection.jsx` - Formulário e informações de contato
 
 ## 🌐 Funcionalidades
 
-- Design responsivo
-- Navegação acessível
-- Transições suaves
-- Otimização de imagens
-- Carregamento de SVGs
+- Design responsivo e moderno
+- Animações fluidas com Motion
+- Galeria de fotos interativa
+- Otimização de assets
+- Navegação SPA com React Router
 
 ## 🎯 Próximos Passos
 
-- [ ] Adicionar mais seções ao portfólio
-- [ ] Implementar modo escuro
-- [ ] Adicionar animações
-- [ ] Melhorar SEO
-- [ ] Adicionar testes
+- [ ] Adicionar mais projetos à galeria
+- [ ] Implementar sistema de Blog
+- [ ] Melhorar ainda mais o SEO
+- [ ] Adicionar testes unitários e de integração
 
 ## 📝 Licença
 
@@ -81,8 +74,8 @@ Este projeto está sob a licença [MIT](LICENSE).
 
 ## 👨‍💻 Autor
 
-Vinicius - Desenvolvedor Web
+Vinicius - Desenvolvedor Full Stack
 
 ---
 
-Feito com ❤️ usando Nuxt 3
+Feito com ❤️ usando React e Vite
