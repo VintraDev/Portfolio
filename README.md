@@ -1,16 +1,81 @@
-# React + Vite
+# Portfólio - React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é o meu portfólio pessoal, reconstruído utilizando React 19 e Vite para máxima performance e modernidade.
 
-Currently, two official plugins are available:
+## 🚀 Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React 19**
+- **Vite**
+- **Tailwind CSS 4**
+- **Motion** (para animações)
+- **Biome** (para linting e formatação)
+- **React Router 7**
 
-## React Compiler
+## 🛠️ Como executar o projeto
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Clone o repositório:
+```bash
+git clone https://github.com/RosiestSloth/Portifolio
+```
 
-## Expanding the ESLint configuration
+2. Instale as dependências:
+```bash
+npm install
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+3. Inicie o servidor de desenvolvimento:
+```bash
+npm run dev
+```
+
+4. Para produção:
+```bash
+npm run build
+npm run preview
+```
+
+## 📁 Estrutura do Projeto
+
+```
+├── src/
+│   ├── components/     # Componentes React (Sections e Shared)
+│   ├── pages/          # Páginas da aplicação
+│   ├── index.css       # Estilos globais (Tailwind CSS 4)
+│   └── main.jsx        # Ponto de entrada
+├── public/             # Arquivos estáticos (imagens, SVGs)
+└── vite.config.js      # Configuração do Vite
+```
+
+## 🎨 Componentes Principais
+
+- `HeroSection.jsx` - Seção de destaque em cada página
+- `GalleryPage.jsx` - Portfólio de projetos e fotografias
+- `SkillSection.jsx` - Exibição de habilidades técnicas
+- `Contact/HeroSection.jsx` - Formulário e informações de contato
+
+## 🌐 Funcionalidades
+
+- Design responsivo e moderno
+- Animações fluidas com Motion
+- Galeria de fotos interativa
+- Otimização de assets
+- Navegação SPA com React Router
+
+## 🎯 Próximos Passos
+
+- [ ] Adicionar mais projetos à galeria
+- [ ] Implementar sistema de Blog
+- [ ] Melhorar ainda mais o SEO
+- [ ] Adicionar testes unitários e de integração
+
+## 📝 Licença
+
+Este projeto está sob a licença [MIT](LICENSE).
+
+## 👨‍💻 Autor
+
+Vinicius - Desenvolvedor Full Stack
+
+---
+
+Feito com ❤️ usando React e Vite
