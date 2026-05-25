@@ -1,19 +1,89 @@
 @import "tailwindcss";
 
+/* ══════════════════════════════════════════════════════════════════════════════
+   DESIGN TOKENS — Portfolio Design System
+   ══════════════════════════════════════════════════════════════════════════════ */
+
 :root {
+  /* ─── Cores ─── */
+  --color-primary: #448ef3;
+  --color-primary-hover: #3a7fd9;
+  --color-primary-light: rgba(68, 142, 243, 0.1);
+  --color-primary-muted: rgba(68, 142, 243, 0.6);
+  --color-primary-subtle: rgba(68, 142, 243, 0.2);
+
+  --color-secondary: #3863b2;
+  --color-tertiary: #182a4c;
+  --color-tertiary-muted: rgba(24, 42, 76, 0.9);
+  --color-tertiary-subtle: rgba(24, 42, 76, 0.6);
+  --color-tertiary-faint: rgba(24, 42, 76, 0.4);
+
+  --color-surface: #f9fafb;
+  --color-surface-alt: #f3f4f6;
+  --color-card: #ffffff;
+  --color-border: #e5e7eb;
+  --color-border-light: #f3f4f6;
+
+  /* Legacy aliases — manter para compatibilidade com Tailwind `text-(--xxx)` */
   --primary-color: #448ef3;
   --secondary-color: #3863b2;
   --tertiary-color: #182a4c;
+
+  /* ─── Tipografia ─── */
+  --font-heading: "Montserrat", "Arial", sans-serif;
+  --font-body: "Work Sans", "Roboto", sans-serif;
+  --font-accent: "Poppins", sans-serif;
+
+  /* ─── Espaçamentos (seções) ─── */
+  --section-px-sm: 1.5rem;
+  --section-px-md: 2.5rem;
+  --section-px-lg: 5rem;
+
+  /* ─── Border Radius ─── */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* ─── Shadows ─── */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 10px 25px rgba(0, 0, 0, 0.1);
+  --shadow-elevated: 0 20px 50px rgba(0, 0, 0, 0.15);
+  --shadow-glow: 0 0 30px rgba(68, 142, 243, 0.3);
+
+  /* ─── Transitions ─── */
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+  --transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.font-poppins {
-  font-family: "Poppins", sans-serif;
+/* ══════════════════════════════════════════════════════════════════════════════
+   CLASSES UTILITÁRIAS DE FONTE
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* Nomes semânticos (preferidos) */
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-accent {
+  font-family: var(--font-accent);
+}
+
+/* Legacy aliases — mantidos para não quebrar componentes existentes */
+.font-montserrat {
+  font-family: var(--font-heading);
 }
 
 .font-work-sans {
-  font-family: "Work Sans", "roboto", sans-serif;
+  font-family: var(--font-body);
 }
 
-.font-montserrat {
-  font-family: "Montserrat", "Arial", sans-serif;
+.font-poppins {
+  font-family: var(--font-accent);
 }
