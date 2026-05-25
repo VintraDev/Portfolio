@@ -14,7 +14,7 @@ function Carousel({ items }) {
                 alt={item.title}
                 className="h-40 sm:h-50 object-cover rounded-md mb-3 sm:mb-4 shadow-sm border border-gray-200 mx-auto w-full"
               />
-              <h3 className="font-montserrat text-base sm:text-lg font-semibold line-clamp-2 text-(--tertiary-color) mb-2">
+              <h3 className="font-heading text-base sm:text-lg font-semibold line-clamp-2 text-(--tertiary-color) mb-2">
                 {item.title}
               </h3>
               <p className="text-(--tertiary-color)/90 text-sm sm:text-base mb-2 line-clamp-2 grow">
@@ -23,7 +23,7 @@ function Carousel({ items }) {
             </div>
 
             <div>
-              <p className="text-(--tertiary-color) font-montserrat font-semibold text-sm sm:text-base mb-2">
+              <p className="text-(--tertiary-color) font-heading font-semibold text-sm sm:text-base mb-2">
                 Veja o Projeto
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
@@ -31,7 +31,7 @@ function Carousel({ items }) {
                   href={item.linkSite}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto font-poppins font-semibold text-white bg-(--primary-color) px-4 py-2 text-xs sm:text-sm rounded-full hover:bg-(--secondary-color) transition-colors duration-100 border border-(--secondary-color) text-center"
+                  className="w-full sm:w-auto font-accent font-semibold text-white bg-(--primary-color) px-4 py-2 text-xs sm:text-sm rounded-full hover:bg-(--secondary-color) transition-colors duration-100 border border-(--secondary-color) text-center"
                 >
                   Ver Site
                 </a>
@@ -39,7 +39,7 @@ function Carousel({ items }) {
                   href={item.linkGitHub}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto font-poppins border font-medium rounded-full px-4 py-2 text-xs sm:text-sm hover:bg-gray-800 hover:text-gray-100 transition duration-100 border-gray-800 text-center"
+                  className="w-full sm:w-auto font-accent border font-medium rounded-full px-4 py-2 text-xs sm:text-sm hover:bg-gray-800 hover:text-gray-100 transition duration-100 border-gray-800 text-center"
                 >
                   Ver GitHub
                 </a>
@@ -50,8 +50,14 @@ function Carousel({ items }) {
       </div>
 
       <div className="flex justify-center gap-2 mt-4 sm:mt-6" id="dots">
-        <button type="button" className="w-8 sm:w-9 h-2 sm:h-3 rounded-full bg-(--primary-color) focus:outline-none cursor-pointer transition-all duration-300 hover:scale-110" />
-        <button type="button" className="w-2 sm:w-3 h-2 sm:h-3 rounded-full bg-gray-400 focus:outline-none cursor-pointer transition-all duration-300 hover:scale-110" />
+        <button
+          type="button"
+          className="w-8 sm:w-9 h-2 sm:h-3 rounded-full bg-(--primary-color) focus:outline-none cursor-pointer transition-all duration-300 hover:scale-110"
+        />
+        <button
+          type="button"
+          className="w-2 sm:w-3 h-2 sm:h-3 rounded-full bg-gray-400 focus:outline-none cursor-pointer transition-all duration-300 hover:scale-110"
+        />
       </div>
     </div>
   );

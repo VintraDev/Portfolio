@@ -30,13 +30,13 @@ function Feature() {
 
   return (
     <section className="bg-linear-to-br from-(--secondary-color) to-(--tertiary-color) px-6 md:px-10 lg:px-20 py-10 md:py-16">
-      <h2 className="font-montserrat text-3xl md:text-4xl lg:text-5xl font-bold text-gray-100 mb-10">
+      <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-gray-100 mb-10">
         Meus Trabalhos
       </h2>
       <div className="">
         <Carousel items={items} />
       </div>
-      <p className="font-work-sans text-gray-200 mt-4">
+      <p className="font-body text-gray-200 mt-4">
         Estes são alguns dos meus projetos mais recentes, onde aplico minhas
         habilidades em desenvolvimento web para criar soluções inovadoras e
         funcionais. Cada projeto reflete meu compromisso com a qualidade e a

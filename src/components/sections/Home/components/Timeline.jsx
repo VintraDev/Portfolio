@@ -37,25 +37,25 @@ function Timeline() {
   // Componente do card da timeline
   const TimelineCard = ({ item }) => (
     <div className="bg-white border border-gray-100 rounded-lg p-5 md:p-6 shadow-sm hover:shadow-md transition-shadow duration-200">
-      <span className="inline-block px-3 py-1 text-sm font-semibold text-(--primary-color) bg-blue-50 rounded-full mb-3 font-work-sans">
+      <span className="inline-block px-3 py-1 text-sm font-semibold text-(--primary-color) bg-blue-50 rounded-full mb-3 font-body">
         {item.year}
       </span>
 
-      <h3 className="font-montserrat text-lg md:text-xl font-bold text-(--tertiary-color) mt-1">
+      <h3 className="font-heading text-lg md:text-xl font-bold text-(--tertiary-color) mt-1">
         {item.title}
       </h3>
 
-      <p className="font-work-sans text-sm md:text-base text-(--secondary-color) font-medium mt-1">
+      <p className="font-body text-sm md:text-base text-(--secondary-color) font-medium mt-1">
         {item.company}
       </p>
 
-      <p className="font-work-sans text-(--tertiary-color)/90 text-sm md:text-base mt-3 leading-relaxed">
+      <p className="font-body text-(--tertiary-color)/90 text-sm md:text-base mt-3 leading-relaxed">
         {item.description}
       </p>
 
       <div className="mt-4 flex items-center gap-2">
         {item.type === 'work' ? (
-          <span className="inline-flex items-center gap-1.5 text-xs font-medium text-(--tertiary-color)/70 font-work-sans">
+          <span className="inline-flex items-center gap-1.5 text-xs font-medium text-(--tertiary-color)/70 font-body">
             <svg
               className="w-4 h-4"
               fill="none"
@@ -75,7 +75,7 @@ function Timeline() {
             Experiência
           </span>
         ) : (
-          <span className="inline-flex items-center gap-1.5 text-xs font-medium text-(--tertiary-color)/70 font-work-sans">
+          <span className="inline-flex items-center gap-1.5 text-xs font-medium text-(--tertiary-color)/70 font-body">
             <svg
               className="w-4 h-4"
               fill="none"

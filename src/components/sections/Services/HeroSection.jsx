@@ -27,10 +27,10 @@ function HeroSection() {
       <div className="flex gap-4 flex-col md:flex-row">
         <div className="flex-1">
           <p className="text-(--primary-color) text-sm">SOLUÇÕES & QUALIDADE</p>
-          <h1 className="font-montserrat text-4xl md:text-5xl lg:text-6xl font-bold text-(--tertiary-color)">
+          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-(--tertiary-color)">
             Meus Serviços Especializados
           </h1>
-          <p className="text-(--tertiary-color) font-work-sans">
+          <p className="text-(--tertiary-color) font-body">
             Contribuindo e construindo projetos escaláveis, profissionais e de
             alta performance. Da prototipação inicial ao deploy final.
           </p>
@@ -52,10 +52,10 @@ function HeroSection() {
                     alt={item.title}
                   />
                   <div>
-                    <h3 className="font-montserrat text-lg font-semibold text-(--tertiary-color)">
+                    <h3 className="font-heading text-lg font-semibold text-(--tertiary-color)">
                       {item.title}
                     </h3>
-                    <p className="text-(--tertiary-color)/90 mt-1 font-work-sans text-sm">
+                    <p className="text-(--tertiary-color)/90 mt-1 font-body text-sm">
                       {item.description}
                     </p>
                   </div>

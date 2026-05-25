@@ -13,7 +13,7 @@ function Footer() {
   return (
     <footer className="">
       {/* Primeira seção do footer */}
-      <div className="text-white font-work-sans text-md bg-(--primary-color) px-6 md:px-10 lg:px-20 py-8 md:py-12">
+      <div className="text-white font-body text-md bg-(--primary-color) px-6 md:px-10 lg:px-20 py-8 md:py-12">
         <p>
           “Transformando ideias em experiências digitais excepcionais através de
           código limpo, design intuitivo e foco em resultados. Vamos construir o
@@ -29,16 +29,16 @@ function Footer() {
               alt="Logo White"
               className="w-40 rounded-xl"
             />
-            <p className="font-work-sans text-gray-100 mt-4">
+            <p className="font-body text-gray-100 mt-4">
               Desenvolvedor Full Stack apaixonado por criar experiências
               digitais incríveis.
             </p>
           </div>
           <div className="flex-1">
-            <h2 className="font-montserrat font-bold text-white text-2xl">
+            <h2 className="font-heading font-bold text-white text-2xl">
               Links Rápidos
             </h2>
-            <ul className="font-work-sans mt-4 flex flex-col gap-2">
+            <ul className="font-body mt-4 flex flex-col gap-2">
               {/* Links Rápidos */}
               {navLinks.map((link) => {
                 return (
@@ -55,10 +55,10 @@ function Footer() {
             </ul>
           </div>
           <div className="flex-1">
-            <h2 className="font-montserrat font-bold text-white text-2xl">
+            <h2 className="font-heading font-bold text-white text-2xl">
               Minhas Redes
             </h2>
-            <ul className="font-work-sans mt-4 flex gap-4">
+            <ul className="font-body mt-4 flex gap-4">
               <li className="hover:scale-105 hover:bg-gray-50/20 p-2 rounded-md transition duration-100">
                 <a
                   target="_blank"

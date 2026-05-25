@@ -71,10 +71,10 @@ function HeroSection() {
   return (
     <section className="px-6 md:px-10 lg:px-20 pt-10 bg-gray-50 lg:pt-30">
       <div>
-        <h1 className="font-montserrat text-3xl font-bold mb-4 text-(--tertiary-color)">
+        <h1 className="font-heading text-3xl font-bold mb-4 text-(--tertiary-color)">
           Trabalhos Selecionados
         </h1>
-        <p className="text-(--tertiary-color)/90 mb-6 font-work-sans">
+        <p className="text-(--tertiary-color)/90 mb-6 font-body">
           Uma demonstração dos meus trabalhos, focando em arquitetura de
           software, escalabilidade e experiência de usuário.
         </p>
@@ -83,7 +83,7 @@ function HeroSection() {
         <div data-dropdown className="relative w-max">
           <button
             onClick={() => setDropdownOpen(!dropdownOpen)}
-            className="flex items-center gap-3 px-5 py-2.5 rounded-full text-white font-poppins font-semibold text-sm bg-(--primary-color) shadow-[0_2px_8px_rgba(0,0,0,0.15)] hover:bg-(--primary-color)/80 transition duration-100 cursor-pointer"
+            className="flex items-center gap-3 px-5 py-2.5 rounded-full text-white font-accent font-semibold text-sm bg-(--primary-color) shadow-[0_2px_8px_rgba(0,0,0,0.15)] hover:bg-(--primary-color)/80 transition duration-100 cursor-pointer"
             type="button"
           >
             {/* Ícone funil */}
@@ -93,6 +93,8 @@ function HeroSection() {
               stroke="currentColor"
               strokeWidth="2.5"
               viewBox="0 0 24 24"
+              role="img"
+              aria-label="Ícone de filtro"
             >
               <path
                 strokeLinecap="round"
@@ -110,6 +112,8 @@ function HeroSection() {
               stroke="currentColor"
               strokeWidth="2.5"
               viewBox="0 0 24 24"
+              role="img"
+              aria-label="Ícone seta"
             >
               <path
                 strokeLinecap="round"
@@ -128,7 +132,7 @@ function HeroSection() {
                       setActiveFilter(filter.value);
                       setDropdownOpen(false);
                     }}
-                    className={`w-full text-left px-5 py-3 text-sm font-poppins font-semibold transition duration-100 cursor-pointer
+                    className={`w-full text-left px-5 py-3 text-sm font-accent font-semibold transition duration-100 cursor-pointer
                                             ${
                                               activeFilter === filter.value
                                                 ? 'bg-(--primary-color) text-white pointer-events-none'
@@ -145,7 +149,7 @@ function HeroSection() {
         </div>
 
         <div>
-          <p className="text-xs text-(--tertiary-color)/40 font-work-sans mt-6 mb-4 uppercase tracking-widest">
+          <p className="text-xs text-(--tertiary-color)/40 font-body mt-6 mb-4 uppercase tracking-widest">
             {filters.find((f) => f.value === activeFilter)?.title}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
@@ -196,17 +200,17 @@ function HeroSection() {
                         </span>
                       ))}
                     </div>
-                    <h3 className="font-montserrat text-lg font-semibold mt-4 text-(--tertiary-color)">
+                    <h3 className="font-heading text-lg font-semibold mt-4 text-(--tertiary-color)">
                       {item.title}
                     </h3>
-                    <p className="text-(--tertiary-color)/90 mt-2 font-work-sans">
+                    <p className="text-(--tertiary-color)/90 mt-2 font-body">
                       {item.description}
                     </p>
                     <a
                       href={item.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-neutral-600 font-work-sans hover:underline block"
+                      className="text-neutral-600 font-body hover:underline block"
                     >
                       Visualizar Projeto
                     </a>

@@ -28,6 +28,7 @@ function Header() {
     <>
       {/* Botão hambúrguer */}
       <button
+        type="button"
         onClick={() => setMenuOpen(!menuOpen)}
         className="lg:hidden fixed top-4 right-4 z-100 w-12 h-12 flex flex-col items-center justify-center gap-1.5 bg-gray-100/70 backdrop-blur-sm rounded-full shadow-md border border-gray-300 cursor-pointer"
         aria-label="Toggle menu"
@@ -45,8 +46,10 @@ function Header() {
 
       {/* Overlay */}
       {menuOpen && (
-        <div
-          className="lg:hidden pointer-events-none fixed inset-0 bg-black/40 z-40 backdrop-blur-sm"
+        <button
+          type="button"
+          aria-label="Fechar menu"
+          className="lg:hidden fixed inset-0 bg-black/40 z-40 backdrop-blur-sm w-full h-full cursor-default border-none"
           onClick={() => setMenuOpen(false)}
         />
       )}

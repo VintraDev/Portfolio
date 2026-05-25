@@ -32,10 +32,10 @@ function ProcessSection() {
     <section className="px-6 md:px-10 lg:px-20 py-20 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="font-montserrat text-3xl md:text-4xl font-bold text-(--tertiary-color) mb-4">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-(--tertiary-color) mb-4">
             Meu Processo de Trabalho
           </h2>
-          <p className="text-(--tertiary-color)/70 font-work-sans max-w-2xl mx-auto">
+          <p className="text-(--tertiary-color)/70 font-body max-w-2xl mx-auto">
             Uma metodologia focada em transparência, agilidade e resultados de
             alta qualidade para o seu negócio.
           </p>
@@ -51,13 +51,13 @@ function ProcessSection() {
               viewport={{ once: true }}
               className="relative p-8 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-lg transition-shadow group"
             >
-              <span className="text-5xl font-montserrat font-black text-(--primary-color)/10 absolute top-4 right-6 group-hover:text-(--primary-color)/20 transition-colors">
+              <span className="text-5xl font-heading font-black text-(--primary-color)/10 absolute top-4 right-6 group-hover:text-(--primary-color)/20 transition-colors">
                 {step.number}
               </span>
-              <h3 className="font-montserrat text-xl font-bold text-(--tertiary-color) mb-4 relative">
+              <h3 className="font-heading text-xl font-bold text-(--tertiary-color) mb-4 relative">
                 {step.title}
               </h3>
-              <p className="text-(--tertiary-color)/80 font-work-sans text-sm leading-relaxed">
+              <p className="text-(--tertiary-color)/80 font-body text-sm leading-relaxed">
                 {step.description}
               </p>
             </motion.div>

@@ -3,10 +3,10 @@ function Cards({ items, className, renderContent }) {
   const defaultContent = (item) => (
     <>
       <img className="size-12" src={item.image} alt={item.title} />
-      <h3 className="font-montserrat text-lg font-semibold mt-4 text-(--tertiary-color)">
+      <h3 className="font-heading text-lg font-semibold mt-4 text-(--tertiary-color)">
         {item.title}
       </h3>
-      <p className="text-(--tertiary-color)/90 mt-2 font-work-sans">
+      <p className="text-(--tertiary-color)/90 mt-2 font-body">
         {item.description}
       </p>
     </>
