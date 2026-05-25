@@ -1,19 +1,25 @@
 import { AnimatePresence, motion } from 'motion/react';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
-// ─── Lightbox ────────────────────────────────────────────────────────────────
+// ─── Lightbox Premium ────────────────────────────────────────────────────────
 
 function Lightbox({ photos, index, onClose }) {
   const [current, setCurrent] = useState(index);
+  const [isLoading, setIsLoading] = useState(true);
+  const [direction, setDirection] = useState(0);
+  const touchStart = useRef(null);
 
-  const prev = useCallback(
-    () => setCurrent((i) => (i - 1 + photos.length) % photos.length),
-    [photos.length],
-  );
-  const next = useCallback(
-    () => setCurrent((i) => (i + 1) % photos.length),
-    [photos.length],
-  );
+  const prev = useCallback(() => {
+    setDirection(-1);
+    setIsLoading(true);
+    setCurrent((i) => (i - 1 + photos.length) % photos.length);
+  }, [photos.length]);
+
+  const next = useCallback(() => {
+    setDirection(1);
+    setIsLoading(true);
+    setCurrent((i) => (i + 1) % photos.length);
+  }, [photos.length]);
 
   useEffect(() => {
     const handler = (e) => {
@@ -29,7 +35,27 @@ function Lightbox({ photos, index, onClose }) {
     };
   }, [onClose, prev, next]);
 
+  const handleTouchStart = (e) => {
+    touchStart.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStart.current === null) return;
+    const diff = touchStart.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 60) {
+      if (diff > 0) next();
+      else prev();
+    }
+    touchStart.current = null;
+  };
+
   const photo = photos[current];
+
+  const slideVariants = {
+    enter: (dir) => ({ opacity: 0, x: dir > 0 ? 80 : -80, scale: 0.95 }),
+    center: { opacity: 1, x: 0, scale: 1 },
+    exit: (dir) => ({ opacity: 0, x: dir > 0 ? -80 : 80, scale: 0.95 }),
+  };
 
   return (
     <AnimatePresence>
@@ -37,75 +63,158 @@ function Lightbox({ photos, index, onClose }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.2 }}
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md"
+        transition={{ duration: 0.25 }}
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-xl"
         onClick={onClose}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
       >
+        {/* Botão fechar */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-6 text-white/60 hover:text-white text-2xl leading-none transition-colors z-10"
+          className="absolute top-5 right-6 size-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm flex items-center justify-center text-white/80 hover:text-white transition-all z-10 cursor-pointer"
           aria-label="Fechar"
         >
-          ✕
+          <svg
+            className="size-5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
         </button>
 
+        {/* Botão anterior */}
         <button
           onClick={(e) => {
             e.stopPropagation();
             prev();
           }}
-          className="absolute left-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white text-5xl leading-none px-3 py-6 transition-colors z-10"
+          className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 size-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white transition-all z-10 cursor-pointer"
           aria-label="Anterior"
         >
-          ‹
+          <svg
+            className="size-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
         </button>
 
-        <motion.img
-          key={current}
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.25 }}
-          src={photo.src}
-          alt={photo.title ?? ''}
-          onClick={(e) => e.stopPropagation()}
-          className="max-w-[82vw] max-h-[82vh] rounded-2xl object-contain select-none"
-          style={{ boxShadow: '0 32px 80px rgba(0,0,0,0.6)' }}
-        />
+        {/* Imagem com animação de slide */}
+        <AnimatePresence mode="wait" custom={direction}>
+          <motion.div
+            key={current}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Skeleton loader */}
+            {isLoading && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="size-10 border-2 border-white/20 border-t-white/80 rounded-full animate-spin" />
+              </div>
+            )}
+            <img
+              src={photo.src}
+              alt={photo.title ?? ''}
+              onLoad={() => setIsLoading(false)}
+              className={`max-w-[85vw] max-h-[80vh] rounded-2xl object-contain select-none transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+              style={{ boxShadow: '0 32px 80px rgba(0,0,0,0.5)' }}
+            />
+          </motion.div>
+        </AnimatePresence>
 
+        {/* Botão próximo */}
         <button
           onClick={(e) => {
             e.stopPropagation();
             next();
           }}
-          className="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white text-5xl leading-none px-3 py-6 transition-colors z-10"
+          className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 size-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white transition-all z-10 cursor-pointer"
           aria-label="Próximo"
         >
-          ›
+          <svg
+            className="size-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
         </button>
 
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1">
+        {/* Info inferior */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
           {photo.title && (
-            <p className="text-white/80 text-sm font-medium">{photo.title}</p>
+            <p className="text-white/90 text-sm font-medium font-body tracking-wide">
+              {photo.title}
+            </p>
           )}
-          <p className="text-white/35 text-xs tabular-nums">
-            {current + 1} / {photos.length}
-          </p>
+          <div className="flex items-center gap-3">
+            <span className="text-white/40 text-xs tabular-nums font-body">
+              {current + 1} / {photos.length}
+            </span>
+            {/* Indicadores em dot */}
+            <div className="flex gap-1">
+              {photos.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setDirection(i > current ? 1 : -1);
+                    setIsLoading(true);
+                    setCurrent(i);
+                  }}
+                  className={`rounded-full transition-all duration-300 cursor-pointer ${
+                    i === current
+                      ? 'w-6 h-1.5 bg-white/80'
+                      : 'size-1.5 bg-white/30 hover:bg-white/50'
+                  }`}
+                  aria-label={`Ir para foto ${i + 1}`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </motion.div>
     </AnimatePresence>
   );
 }
 
-// ─── Pinterest-style masonry column layout ───────────────────────────────────
+// ─── Masonry Grid Premium ────────────────────────────────────────────────────
+
+const getColumns = () => {
+  if (typeof window === 'undefined') return 3;
+  if (window.innerWidth < 640) return 1;
+  if (window.innerWidth < 1024) return 2;
+  return 3;
+};
 
 function MasonryGrid({ photos, onPhotoClick }) {
-  const getColumns = () => {
-    if (typeof window === 'undefined') return 3;
-    if (window.innerWidth < 640) return 1;
-    if (window.innerWidth < 1024) return 2;
-    return 3;
-  };
-
   const [cols, setCols] = useState(getColumns);
 
   useEffect(() => {
@@ -128,52 +237,84 @@ function MasonryGrid({ photos, onPhotoClick }) {
       {columns.map((colPhotos, colIdx) => (
         <div key={colIdx} className="flex flex-col gap-4">
           {colPhotos.map(({ photo, originalIndex }, itemIdx) => (
-            <motion.div
+            <MasonryItem
               key={originalIndex}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{
-                duration: 0.45,
-                delay: colIdx * 0.07 + itemIdx * 0.05,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              onClick={() => onPhotoClick(originalIndex)}
-              className="group relative cursor-pointer rounded-2xl overflow-hidden bg-gray-100"
-              style={{ aspectRatio: `${photo.width} / ${photo.height}` }}
-            >
-              <img
-                src={photo.src}
-                alt={photo.title ?? ''}
-                className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
-              />
-
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-              {/* Title */}
-              {photo.title && (
-                <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                  <p className="text-white text-sm font-semibold leading-snug drop-shadow-sm">
-                    {photo.title}
-                  </p>
-                </div>
-              )}
-
-              {/* Save button */}
-              <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <button
-                  onClick={(e) => e.stopPropagation()}
-                  className="bg-red-500 hover:bg-red-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md transition-colors"
-                >
-                  Salvar
-                </button>
-              </div>
-            </motion.div>
+              photo={photo}
+              originalIndex={originalIndex}
+              colIdx={colIdx}
+              itemIdx={itemIdx}
+              onPhotoClick={onPhotoClick}
+            />
           ))}
         </div>
       ))}
     </div>
+  );
+}
+
+function MasonryItem({ photo, originalIndex, colIdx, itemIdx, onPhotoClick }) {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{
+        duration: 0.5,
+        delay: colIdx * 0.08 + itemIdx * 0.06,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      onClick={() => onPhotoClick(originalIndex)}
+      className="group relative cursor-pointer rounded-2xl overflow-hidden"
+      style={{ aspectRatio: `${photo.width} / ${photo.height}` }}
+    >
+      {/* Skeleton */}
+      {!loaded && (
+        <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-2xl" />
+      )}
+
+      <img
+        src={photo.src}
+        alt={photo.title ?? ''}
+        onLoad={() => setLoaded(true)}
+        className={`w-full h-full object-cover transition-all duration-500 ease-out group-hover:scale-[1.04] ${loaded ? 'opacity-100' : 'opacity-0'}`}
+      />
+
+      {/* Gradient overlay com glassmorphism */}
+      <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+      {/* Reflexo superior sutil */}
+      <div className="absolute inset-x-0 top-0 h-1/3 bg-linear-to-b from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+      {/* Title com efeito de entrada */}
+      {photo.title && (
+        <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+          <p className="text-white text-sm font-semibold leading-snug drop-shadow-md font-heading">
+            {photo.title}
+          </p>
+        </div>
+      )}
+
+      {/* Ícone de expandir */}
+      <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100">
+        <div className="size-9 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 shadow-lg">
+          <svg
+            className="size-4 text-white"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+            />
+          </svg>
+        </div>
+      </div>
+    </motion.div>
   );
 }
 
@@ -193,16 +334,29 @@ function GalleryCategory({ title, description, photos }) {
           className="mb-8 flex items-end justify-between gap-4"
         >
           <div>
-            <h2 className="font-montserrat text-2xl font-bold text-(--tertiary-color) mb-1">
+            <h2 className="font-heading text-2xl font-bold text-(--tertiary-color) mb-1">
               {title}
             </h2>
             {description && (
-              <p className="text-(--tertiary-color)/60 font-work-sans text-sm">
+              <p className="text-(--tertiary-color)/60 font-body text-sm">
                 {description}
               </p>
             )}
           </div>
-          <span className="text-(--tertiary-color)/40 font-work-sans text-sm shrink-0">
+          <span className="shrink-0 flex items-center gap-1.5 text-(--tertiary-color)/40 font-body text-sm bg-(--tertiary-color)/5 px-3 py-1 rounded-full">
+            <svg
+              className="size-3.5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              />
+            </svg>
             {photos.length} itens
           </span>
         </motion.div>
@@ -214,7 +368,7 @@ function GalleryCategory({ title, description, photos }) {
       </section>
 
       {/* Divider entre seções */}
-      <div className="mx-6 md:mx-10 lg:mx-20 h-px bg-(--tertiary-color)/10" />
+      <div className="mx-6 md:mx-10 lg:mx-20 h-px bg-(--tertiary-color)/8" />
 
       {lightboxIndex !== null && (
         <Lightbox
