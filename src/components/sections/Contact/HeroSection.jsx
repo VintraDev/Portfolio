@@ -1,5 +1,5 @@
+import { AnimatePresence, motion } from 'motion/react';
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 
 // ─── CONFIGURAÇÃO DO SERVIÇO DE EMAIL ─────────────────────────────────────────
 // A chave é carregada com segurança de arquivos de ambiente (.env ou .env.local).
@@ -23,7 +23,7 @@ function HeroSection() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Validação básica
     if (!formData.name || !formData.email || !formData.message) {
       setStatus('error');
@@ -57,13 +57,16 @@ function HeroSection() {
         setStatus('success');
         setFormData({ name: '', email: '', message: '' }); // Limpa o formulário
       } else {
-        throw new Error(result.message || 'Ocorreu um erro ao enviar a mensagem.');
+        throw new Error(
+          result.message || 'Ocorreu um erro ao enviar a mensagem.',
+        );
       }
     } catch (error) {
       console.error('Erro no envio do form:', error);
       setStatus('error');
       setErrorMessage(
-        error.message || 'Erro de conexão. Verifique sua rede ou tente novamente.'
+        error.message ||
+          'Erro de conexão. Verifique sua rede ou tente novamente.',
       );
     }
   };
@@ -272,7 +275,8 @@ function HeroSection() {
                   exit={{ opacity: 0, y: -10 }}
                   className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm font-body flex items-center gap-2"
                 >
-                  <span>✅</span> Mensagem enviada com sucesso! Entrarei em contato em breve.
+                  <span>✅</span> Mensagem enviada com sucesso! Entrarei em
+                  contato em breve.
                 </motion.div>
               )}
 

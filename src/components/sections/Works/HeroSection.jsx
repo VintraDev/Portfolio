@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import Cards from '../../shared/Cards';
 
@@ -52,7 +52,7 @@ function HeroSection() {
     {
       title: 'Convite de Aniversário',
       description:
-        'Um convite digital para um aniversário, focado em design criativo e experiência de usuário envolvente.',
+        'Um convite digital para um aniversário, focado em design criativo e experiência de usuário envolvendo.',
       category: ['design', 'front-end'],
       image: '/img/cards/Invitation.png',
       skills: ['React', 'Design', 'Tailwindcss'],
@@ -68,20 +68,36 @@ function HeroSection() {
     return categories.includes(activeFilter);
   });
 
+  const transition = { duration: 0.6, ease: [0.16, 1, 0.3, 1] };
+
   return (
     <section className="px-6 md:px-10 lg:px-20 pt-10 bg-gray-50 lg:pt-30">
       <div>
-        <h1 className="font-heading text-3xl font-bold mb-4 text-(--tertiary-color)">
+        <motion.h1
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={transition}
+          className="font-heading text-3xl font-bold mb-4 text-(--tertiary-color)"
+        >
           Trabalhos Selecionados
-        </h1>
-        <p className="text-(--tertiary-color)/90 mb-6 font-body">
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ ...transition, delay: 0.15 }}
+          className="text-(--tertiary-color)/90 mb-6 font-body"
+        >
           Uma demonstração dos meus trabalhos, focando em arquitetura de
           software, escalabilidade e experiência de usuário.
-        </p>
+        </motion.p>
 
         {/* Filtro */}
         <div data-dropdown className="relative w-max">
-          <button
+          <motion.button
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ ...transition, delay: 0.3 }}
             onClick={() => setDropdownOpen(!dropdownOpen)}
             className="flex items-center gap-3 px-5 py-2.5 rounded-full text-white font-accent font-semibold text-sm bg-(--primary-color) shadow-[0_2px_8px_rgba(0,0,0,0.15)] hover:bg-(--primary-color)/80 transition duration-100 cursor-pointer"
             type="button"
@@ -121,31 +137,39 @@ function HeroSection() {
                 d="M19 9l-7 7-7-7"
               />
             </svg>
-          </button>
+          </motion.button>
 
-          {dropdownOpen && (
-            <ul className="absolute top-full mt-2 left-0 w-full z-50 bg-white rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.12)] overflow-hidden border border-gray-100">
-              {filters.map((filter, index) => (
-                <li key={index}>
-                  <button
-                    onClick={() => {
-                      setActiveFilter(filter.value);
-                      setDropdownOpen(false);
-                    }}
-                    className={`w-full text-left px-5 py-3 text-sm font-accent font-semibold transition duration-100 cursor-pointer
+          <AnimatePresence>
+            {dropdownOpen && (
+              <motion.ul
+                initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
+                className="absolute top-full mt-2 left-0 w-full z-50 bg-white rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.12)] overflow-hidden border border-gray-100"
+              >
+                {filters.map((filter, index) => (
+                  <li key={index}>
+                    <button
+                      onClick={() => {
+                        setActiveFilter(filter.value);
+                        setDropdownOpen(false);
+                      }}
+                      className={`w-full text-left px-5 py-3 text-sm font-accent font-semibold transition duration-100 cursor-pointer
                                             ${
                                               activeFilter === filter.value
                                                 ? 'bg-(--primary-color) text-white pointer-events-none'
                                                 : 'text-(--tertiary-color) hover:bg-gray-200'
                                             }`}
-                    type="button"
-                  >
-                    {filter.label}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
+                      type="button"
+                    >
+                      {filter.label}
+                    </button>
+                  </li>
+                ))}
+              </motion.ul>
+            )}
+          </AnimatePresence>
         </div>
 
         <div>

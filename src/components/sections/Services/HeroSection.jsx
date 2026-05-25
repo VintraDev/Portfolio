@@ -1,3 +1,4 @@
+import { motion } from 'motion/react';
 import Cards from '../../shared/Cards';
 
 const items = [
@@ -22,26 +23,55 @@ const items = [
 ];
 
 function HeroSection() {
+  const transition = { duration: 0.7, ease: [0.16, 1, 0.3, 1] };
+
   return (
     <section className="px-6 md:px-10 lg:px-20 py-10 mt-10 lg:mt-20">
       <div className="flex gap-4 flex-col md:flex-row">
         <div className="flex-1">
-          <p className="text-(--primary-color) text-sm">SOLUÇÕES & QUALIDADE</p>
-          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-(--tertiary-color)">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={transition}
+            className="text-(--primary-color) text-sm font-semibold tracking-wider"
+          >
+            SOLUÇÕES & QUALIDADE
+          </motion.p>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ...transition, delay: 0.1 }}
+            className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-(--tertiary-color) mb-4"
+          >
             Meus Serviços Especializados
-          </h1>
-          <p className="text-(--tertiary-color) font-body">
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ...transition, delay: 0.2 }}
+            className="text-(--tertiary-color) font-body mb-6"
+          >
             Contribuindo e construindo projetos escaláveis, profissionais e de
             alta performance. Da prototipação inicial ao deploy final.
-          </p>
+          </motion.p>
 
-          <img
+          <motion.img
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ ...transition, delay: 0.3 }}
             className="mt-4 object-cover rounded-md border-2 border-(--primary-color) md:hidden"
             src="/img/FeedbackAnalytics.png"
             alt="Feedback Analytics"
           />
 
-          <div className="flex flex-col mt-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ...transition, delay: 0.4 }}
+            className="flex flex-col mt-4"
+          >
             <Cards
               items={items}
               renderContent={(item) => (
@@ -62,15 +92,21 @@ function HeroSection() {
                 </div>
               )}
             />
-          </div>
+          </motion.div>
         </div>
-        <div className="flex-1 relative overflow-hidden rounded-l-md border-2 border-(--primary-color) border-r-0 -right-6 md:-right-10 lg:-right-20 hidden md:block">
+
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ ...transition, delay: 0.3 }}
+          className="flex-1 relative overflow-hidden rounded-l-md border-2 border-(--primary-color) border-r-0 -right-6 md:-right-10 lg:-right-20 hidden md:block"
+        >
           <img
             className="absolute right-0 w-full h-full object-cover object-left"
             src="/img/FeedbackAnalytics.png"
             alt="Feedback Analytics"
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );

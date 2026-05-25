@@ -10,7 +10,7 @@ function StatsSection() {
       {stats.map((stat) => (
         <div
           key={stat.label}
-          className="text-center border-t md:border-l md:border-t-0 border-gray-200 first:border-t-0 first:border-l-0 w-full p-10"
+          className="text-center border-t md:border-l md:border-t-0 border-gray-200/20 first:border-t-0 first:border-l-0 w-full p-10"
         >
           <h3 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-gray-100 mb-2">
             {stat.value}

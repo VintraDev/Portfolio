@@ -12,7 +12,7 @@ function BeyondTheCodeSection() {
       image: '/svg/Book.svg',
       title: 'Leitura',
       description:
-        'Adoro mergulhar em diferentes estilos literários e enriquecer minha imaginação com as histórias que encontro em cada leitura.',
+        'Adoro mergulhar em diferentes styles literários e enriquecer minha imaginação com as histórias que encontro em cada leitura.',
     },
     {
       image: '/svg/Dumbell.svg',

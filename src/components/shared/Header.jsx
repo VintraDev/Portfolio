@@ -100,11 +100,15 @@ function Header() {
         className={`
                 hidden lg:flex fixed z-50
                 flex-row items-center justify-center
-                bg-gray-100/70 backdrop-blur-sm shadow-md border border-gray-300
                 rounded-full p-2
-                left-1/2 -translate-x-1/2
-                transition-all duration-300
-                ${isScrolled ? 'top-8' : 'top-4'}
+                left-0 right-0 mx-auto w-max
+                top-6
+                transition-all duration-300 ease-in-out
+                ${
+                  isScrolled
+                    ? 'bg-white/85 backdrop-blur-md shadow-lg border border-gray-300'
+                    : 'bg-gray-100/70 backdrop-blur-sm shadow-md border border-gray-200'
+                }
             `}
       >
         <nav>

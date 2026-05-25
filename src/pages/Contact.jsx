@@ -1,7 +1,12 @@
 import HeroSection from '@/components/sections/Contact/HeroSection';
+import PageTransition from '@/components/shared/PageTransition';
 
 function Contact() {
-  return <HeroSection />;
+  return (
+    <PageTransition>
+      <HeroSection />
+    </PageTransition>
+  );
 }
 
 export default Contact;
