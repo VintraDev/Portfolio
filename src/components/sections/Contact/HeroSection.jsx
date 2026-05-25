@@ -1,6 +1,73 @@
-import { motion } from 'motion/react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+
+// ─── CONFIGURAÇÃO DO SERVIÇO DE EMAIL ─────────────────────────────────────────
+// A chave é carregada com segurança de arquivos de ambiente (.env ou .env.local).
+// Obtenha sua chave gratuita em https://web3forms.com e configure-a em seu arquivo .env local.
+const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '';
 
 function HeroSection() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  const [status, setStatus] = useState('idle'); // idle | loading | success | error
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    // Validação básica
+    if (!formData.name || !formData.email || !formData.message) {
+      setStatus('error');
+      setErrorMessage('Por favor, preencha todos os campos.');
+      return;
+    }
+
+    setStatus('loading');
+    setErrorMessage('');
+
+    try {
+      // Usando Web3Forms para envio sem servidor backend
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `Novo contato do Portfólio - ${formData.name}`,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' }); // Limpa o formulário
+      } else {
+        throw new Error(result.message || 'Ocorreu um erro ao enviar a mensagem.');
+      }
+    } catch (error) {
+      console.error('Erro no envio do form:', error);
+      setStatus('error');
+      setErrorMessage(
+        error.message || 'Erro de conexão. Verifique sua rede ou tente novamente.'
+      );
+    }
+  };
+
   const socialLinks = [
     {
       name: 'LinkedIn',
@@ -36,10 +103,10 @@ function HeroSection() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="font-montserrat text-4xl font-bold mb-6 text-(--tertiary-color)">
+          <h1 className="font-heading text-4xl font-bold mb-6 text-(--tertiary-color)">
             Vamos conversar?
           </h1>
-          <p className="text-(--tertiary-color)/90 mb-8 font-work-sans text-lg">
+          <p className="text-(--tertiary-color)/90 mb-8 font-body text-lg">
             Seja para um projeto, uma colaboração ou apenas para dar um "oi",
             estou sempre aberto a novas conexões.
           </p>
@@ -65,10 +132,10 @@ function HeroSection() {
                 </svg>
               </div>
               <div>
-                <h4 className="font-montserrat font-bold text-(--tertiary-color)">
+                <h4 className="font-heading font-bold text-(--tertiary-color)">
                   Email
                 </h4>
-                <p className="font-work-sans text-(--tertiary-color)/70 text-sm">
+                <p className="font-body text-(--tertiary-color)/70 text-sm">
                   contato@portfolio.com
                 </p>
               </div>
@@ -100,10 +167,10 @@ function HeroSection() {
                 </svg>
               </div>
               <div>
-                <h4 className="font-montserrat font-bold text-(--tertiary-color)">
+                <h4 className="font-heading font-bold text-(--tertiary-color)">
                   Localização
                 </h4>
-                <p className="font-work-sans text-(--tertiary-color)/70 text-sm">
+                <p className="font-body text-(--tertiary-color)/70 text-sm">
                   Brasil
                 </p>
               </div>
@@ -111,7 +178,7 @@ function HeroSection() {
           </div>
 
           <div className="mt-10">
-            <h4 className="font-montserrat font-bold text-(--tertiary-color) mb-4">
+            <h4 className="font-heading font-bold text-(--tertiary-color) mb-4">
               Redes Sociais
             </h4>
             <div className="flex gap-4">
@@ -138,56 +205,123 @@ function HeroSection() {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100"
+          className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden"
         >
-          <form className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm font-montserrat font-bold text-(--tertiary-color) mb-1"
+                className="block text-sm font-heading font-bold text-(--tertiary-color) mb-1"
               >
                 Nome
               </label>
               <input
                 id="name"
                 type="text"
-                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-(--primary-color) focus:ring-2 focus:ring-(--primary-color)/20 outline-none transition-all font-work-sans"
+                value={formData.name}
+                onChange={handleChange}
+                disabled={status === 'loading'}
+                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-(--primary-color) focus:ring-2 focus:ring-(--primary-color)/20 outline-none transition-all font-body disabled:opacity-50"
                 placeholder="Seu nome"
+                required
               />
             </div>
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-montserrat font-bold text-(--tertiary-color) mb-1"
+                className="block text-sm font-heading font-bold text-(--tertiary-color) mb-1"
               >
                 Email
               </label>
               <input
                 id="email"
                 type="email"
-                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-(--primary-color) focus:ring-2 focus:ring-(--primary-color)/20 outline-none transition-all font-work-sans"
+                value={formData.email}
+                onChange={handleChange}
+                disabled={status === 'loading'}
+                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-(--primary-color) focus:ring-2 focus:ring-(--primary-color)/20 outline-none transition-all font-body disabled:opacity-50"
                 placeholder="seu@email.com"
+                required
               />
             </div>
             <div>
               <label
                 htmlFor="message"
-                className="block text-sm font-montserrat font-bold text-(--tertiary-color) mb-1"
+                className="block text-sm font-heading font-bold text-(--tertiary-color) mb-1"
               >
                 Mensagem
               </label>
               <textarea
                 id="message"
                 rows="4"
-                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-(--primary-color) focus:ring-2 focus:ring-(--primary-color)/20 outline-none transition-all font-work-sans resize-none"
+                value={formData.message}
+                onChange={handleChange}
+                disabled={status === 'loading'}
+                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-(--primary-color) focus:ring-2 focus:ring-(--primary-color)/20 outline-none transition-all font-body resize-none disabled:opacity-50"
                 placeholder="Como posso ajudar?"
+                required
               ></textarea>
             </div>
+
+            {/* Banners de Feedback com Animação */}
+            <AnimatePresence mode="wait">
+              {status === 'success' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm font-body flex items-center gap-2"
+                >
+                  <span>✅</span> Mensagem enviada com sucesso! Entrarei em contato em breve.
+                </motion.div>
+              )}
+
+              {status === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm font-body flex items-center gap-2"
+                >
+                  <span>⚠️</span> {errorMessage || 'Erro ao enviar a mensagem.'}
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             <button
               type="submit"
-              className="w-full bg-(--primary-color) text-white font-poppins font-bold py-4 rounded-lg hover:bg-(--primary-color)/90 transition-all shadow-lg shadow-(--primary-color)/30 cursor-pointer"
+              disabled={status === 'loading'}
+              className="w-full bg-(--primary-color) text-white font-accent font-bold py-4 rounded-lg hover:bg-(--primary-color)/90 transition-all shadow-lg shadow-(--primary-color)/30 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
-              Enviar Mensagem
+              {status === 'loading' ? (
+                <>
+                  <svg
+                    className="animate-spin h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    role="img"
+                    aria-label="Carregando"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                  Enviando...
+                </>
+              ) : (
+                'Enviar Mensagem'
+              )}
             </button>
           </form>
         </motion.div>
