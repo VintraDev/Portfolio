@@ -1,19 +1,10 @@
 import { motion } from 'motion/react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
 function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const navLinks = [
     { to: '/', label: 'Home' },
@@ -97,19 +88,14 @@ function Header() {
 
       {/* Header DESKTOP — pill centralizada */}
       <header
-        className={`
+        className="
                 hidden lg:flex fixed z-50
                 flex-row items-center justify-center
                 rounded-full p-2
                 left-0 right-0 mx-auto w-max
                 top-6
-                transition-all duration-300 ease-in-out
-                ${
-                  isScrolled
-                    ? 'bg-white/85 backdrop-blur-md shadow-lg border border-gray-300'
-                    : 'bg-gray-100/70 backdrop-blur-sm shadow-md border border-gray-200'
-                }
-            `}
+                bg-white/80 backdrop-blur-md shadow-md border border-gray-200/80
+            "
       >
         <nav>
           <ul className="flex flex-row items-center justify-center gap-2 font-medium text-lg">
