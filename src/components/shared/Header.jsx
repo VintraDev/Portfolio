@@ -5,7 +5,6 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
-
   const navLinks = [
     { to: '/', label: 'Home' },
     { to: '/about', label: 'Sobre' },
@@ -14,6 +13,10 @@ function Header() {
     { to: '/gallery', label: 'Galeria' },
     { to: '/contact', label: 'Contato' },
   ];
+
+  const activeIndex = navLinks.findIndex(
+    (link) => link.to === location.pathname,
+  );
 
   return (
     <>
@@ -56,32 +59,37 @@ function Header() {
             `}
       >
         <nav>
-          <ul className="flex flex-col gap-2 font-medium text-lg">
+          <ul className="flex flex-col gap-2 font-medium text-lg relative">
             {navLinks.map(({ to, label }) => (
               <li key={to} className="relative">
                 <NavLink
                   to={to}
                   className={({ isActive }) => `
-                                        w-full rounded-full h-14 flex items-center justify-center transition-colors duration-200 cursor-pointer relative z-10
-                                        ${isActive ? 'text-white' : 'text-(--tertiary-color) hover:bg-gray-800/10'}
-                                    `}
+                                         w-full rounded-full h-14 flex items-center justify-center transition-colors duration-200 cursor-pointer relative z-10
+                                         ${isActive ? 'text-white' : 'text-(--tertiary-color) hover:bg-gray-800/10'}
+                                     `}
                   onClick={() => setMenuOpen(false)}
                 >
                   {label}
-                  {location.pathname === to && (
-                    <motion.div
-                      layoutId="activeIndicatorMobile"
-                      className="absolute inset-0 bg-(--primary-color) rounded-full -z-10"
-                      transition={{
-                        type: 'spring',
-                        stiffness: 380,
-                        damping: 30,
-                      }}
-                    />
-                  )}
                 </NavLink>
               </li>
             ))}
+            {activeIndex !== -1 && (
+              <motion.div
+                className="absolute left-0 right-0 bg-(--primary-color) rounded-full -z-10"
+                style={{
+                  height: '3.5rem', // h-14
+                }}
+                animate={{
+                  y: `${activeIndex * 4}rem`, // height 3.5rem + gap 0.5rem = 4rem
+                }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 380,
+                  damping: 30,
+                }}
+              />
+            )}
           </ul>
         </nav>
       </aside>
@@ -98,31 +106,37 @@ function Header() {
             "
       >
         <nav>
-          <ul className="flex flex-row items-center justify-center gap-2 font-medium text-lg">
+          <ul className="flex flex-row items-center justify-center gap-2 font-medium text-lg relative">
             {navLinks.map(({ to, label }) => (
               <li key={to} className="relative">
                 <NavLink
                   className={({ isActive }) => `
-                                        w-30 rounded-full h-14 flex items-center justify-center transition-colors duration-200 cursor-pointer relative z-10
-                                        ${isActive ? 'text-white' : 'text-(--tertiary-color) hover:bg-gray-800/10'}
-                                    `}
+                                         w-30 rounded-full h-14 flex items-center justify-center transition-colors duration-200 cursor-pointer relative z-10
+                                         ${isActive ? 'text-white' : 'text-(--tertiary-color) hover:bg-gray-800/10'}
+                                     `}
                   to={to}
                 >
                   {label}
-                  {location.pathname === to && (
-                    <motion.div
-                      layoutId="activeIndicator"
-                      className="absolute inset-0 bg-(--primary-color) rounded-full -z-10"
-                      transition={{
-                        type: 'spring',
-                        stiffness: 380,
-                        damping: 30,
-                      }}
-                    />
-                  )}
                 </NavLink>
               </li>
             ))}
+            {activeIndex !== -1 && (
+              <motion.div
+                className="absolute top-0 bottom-0 left-0 bg-(--primary-color) rounded-full -z-10"
+                style={{
+                  width: '7.5rem', // w-30 (120px)
+                  height: '3.5rem', // h-14 (56px)
+                }}
+                animate={{
+                  x: `${activeIndex * 8}rem`, // w-30 (7.5rem) + gap-2 (0.5rem) = 8rem
+                }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 380,
+                  damping: 30,
+                }}
+              />
+            )}
             <li>
               <Link
                 to="/"
