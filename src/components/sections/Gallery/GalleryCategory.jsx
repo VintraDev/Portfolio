@@ -1,5 +1,12 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  FaChevronLeft,
+  FaChevronRight,
+  FaImage,
+  FaMagnifyingGlassPlus,
+  FaXmark,
+} from 'react-icons/fa6';
 
 // ─── Lightbox Premium ────────────────────────────────────────────────────────
 
@@ -75,19 +82,7 @@ function Lightbox({ photos, index, onClose }) {
           className="absolute top-5 right-6 size-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm flex items-center justify-center text-white/80 hover:text-white transition-all z-10 cursor-pointer"
           aria-label="Fechar"
         >
-          <svg
-            className="size-5"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
+          <FaXmark className="size-5" />
         </button>
 
         {/* Botão anterior */}
@@ -99,19 +94,7 @@ function Lightbox({ photos, index, onClose }) {
           className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 size-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white transition-all z-10 cursor-pointer"
           aria-label="Anterior"
         >
-          <svg
-            className="size-6"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
+          <FaChevronLeft className="size-6" />
         </button>
 
         {/* Imagem com animação de slide */}
@@ -152,19 +135,7 @@ function Lightbox({ photos, index, onClose }) {
           className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 size-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white transition-all z-10 cursor-pointer"
           aria-label="Próximo"
         >
-          <svg
-            className="size-6"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
+          <FaChevronRight className="size-6" />
         </button>
 
         {/* Info inferior */}
@@ -299,19 +270,7 @@ function MasonryItem({ photo, originalIndex, colIdx, itemIdx, onPhotoClick }) {
       {/* Ícone de expandir */}
       <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100">
         <div className="size-9 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 shadow-lg">
-          <svg
-            className="size-4 text-white"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-            />
-          </svg>
+          <FaMagnifyingGlassPlus className="size-4 text-white" />
         </div>
       </div>
     </motion.div>
@@ -344,19 +303,7 @@ function GalleryCategory({ title, description, photos }) {
             )}
           </div>
           <span className="shrink-0 flex items-center gap-1.5 text-(--tertiary-color)/40 font-body text-sm bg-(--tertiary-color)/5 px-3 py-1 rounded-full">
-            <svg
-              className="size-3.5"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-              />
-            </svg>
+            <FaImage className="size-3.5" />
             {photos.length} itens
           </span>
         </motion.div>

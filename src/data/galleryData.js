@@ -37,7 +37,7 @@ export const galleryCategories = [
         title: 'Identidade Visual & Convites',
       },
       {
-        src: 'https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1964&auto=format&fit=crop',
+        src: '',
         width: 1964,
         height: 2619,
         alt: 'App Interface Design',

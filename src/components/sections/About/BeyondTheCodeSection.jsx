@@ -1,21 +1,22 @@
+import { FaBookOpen, FaDumbbell, FaGamepad } from 'react-icons/fa6';
 import Cards from '../../shared/Cards';
 
 function BeyondTheCodeSection() {
   const items = [
     {
-      image: '/svg/GamingPad.svg',
+      icon: FaGamepad,
       title: 'Jogos',
       description:
         'Adoro jogar e me expressar por meio de jogos criativos como Minecraft e Hytale. Também gosto de jogos de tabuleiro e experiências cooperativas.',
     },
     {
-      image: '/svg/Book.svg',
+      icon: FaBookOpen,
       title: 'Leitura',
       description:
         'Adoro mergulhar em diferentes styles literários e enriquecer minha imaginação com as histórias que encontro em cada leitura.',
     },
     {
-      image: '/svg/Dumbell.svg',
+      icon: FaDumbbell,
       title: 'Academia',
       description:
         'Não é apenas um hobby, mas uma parte essencial da minha saúde e bem-estar.',

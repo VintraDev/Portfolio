@@ -1,5 +1,10 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useState } from 'react';
+import {
+  FaArrowUpRightFromSquare,
+  FaChevronDown,
+  FaFilter,
+} from 'react-icons/fa6';
 import Cards from '../../shared/Cards';
 
 function HeroSection() {
@@ -103,40 +108,14 @@ function HeroSection() {
             type="button"
           >
             {/* Ícone funil */}
-            <svg
-              className="w-3.5 h-3.5 shrink-0"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              viewBox="0 0 24 24"
-              role="img"
-              aria-label="Ícone de filtro"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3 4h18l-7 7v6l-4 2v-8L3 4z"
-              />
-            </svg>
+            <FaFilter className="w-3.5 h-3.5 shrink-0" />
             <span className="text-white/60 font-normal">Filtrar por:</span>
             <span>
               {filters.find((f) => f.value === activeFilter)?.label ?? 'Todos'}
             </span>
-            <svg
+            <FaChevronDown
               className={`w-4 h-4 shrink-0 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`}
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              viewBox="0 0 24 24"
-              role="img"
-              aria-label="Ícone seta"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
+            />
           </motion.button>
 
           <AnimatePresence>
@@ -202,14 +181,15 @@ function HeroSection() {
                       }}
                       className="bg-black/80 absolute inset-0 flex items-center justify-center"
                     >
-                      <motion.img
+                      <motion.div
                         variants={{
                           hidden: { scale: 0 },
                           visible: { scale: 1 },
                         }}
-                        src="/svg/Arrow-rt.svg"
-                        alt="Arrow top Right"
-                      />
+                        className="text-white text-3xl"
+                      >
+                        <FaArrowUpRightFromSquare />
+                      </motion.div>
                     </motion.div>
                   </motion.a>
 

@@ -1,21 +1,22 @@
+import { FaCss3Alt, FaReact, FaVuejs } from 'react-icons/fa6';
 import Cards from '../../shared/Cards';
 
 function FeatureSection() {
   const features = [
     {
-      image: '/svg/Vite.svg',
+      icon: FaReact,
       title: 'React & Vite',
       description:
         'Desenvolvimento Front End utilizando a biblioteca React com Vite, utilizando boas práticas e construção de componentes reutilizáveis.',
     },
     {
-      image: '/svg/Tailwindcss.svg',
+      icon: FaCss3Alt,
       title: 'Tailwind CSS',
       description:
         'Estilização com Tailwind CSS, biblioteca avançada e moderna, performance otimizada e um design system escalável.',
     },
     {
-      image: '/svg/Nuxt.svg',
+      icon: FaVuejs,
       title: 'Vue & Nuxt',
       description:
         'Desenvolvimento Front End utilizando o framework Nuxt com Vue, utilizando boas práticas e construção de componentes reutilizáveis.',

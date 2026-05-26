@@ -1,21 +1,22 @@
 import { motion } from 'motion/react';
+import { FaCode, FaGaugeHigh, FaPalette } from 'react-icons/fa6';
 import Cards from '../../shared/Cards';
 
 const items = [
   {
-    image: '/svg/blockchain.svg',
+    icon: FaCode,
     title: 'Desenvolvimento Web',
     description:
       'Aplicações web customizadas construídas com React, Vue e arquiteturas modernas otimizadas para melhor performance.',
   },
   {
-    image: '/svg/color_pallete.svg',
+    icon: FaPalette,
     title: 'UX/UI Design',
     description:
       'Interfaces criadas com foco em usabilidade, comunicação e acessibilide construídas com foco em usabilidade e interatividade.',
   },
   {
-    image: '/svg/focus.svg',
+    icon: FaGaugeHigh,
     title: 'Melhoria Contínua',
     description:
       'Manter seu website atualizado, seguro e funcionando sem problemas com melhorias contínuase otimização de desempenho.',
@@ -76,11 +77,7 @@ function HeroSection() {
               items={items}
               renderContent={(item) => (
                 <div className="flex flex-row items-center gap-3 p-4">
-                  <img
-                    className="w-12 shrink-0"
-                    src={item.image}
-                    alt={item.title}
-                  />
+                  <item.icon className="size-12 text-(--primary-color) shrink-0" />
                   <div>
                     <h3 className="font-heading text-lg font-semibold text-(--tertiary-color)">
                       {item.title}

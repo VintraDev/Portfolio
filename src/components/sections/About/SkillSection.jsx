@@ -1,69 +1,86 @@
+import {
+  FaComments,
+  FaDatabase,
+  FaFigma,
+  FaGitAlt,
+  FaGithub,
+  FaLightbulb,
+  FaListCheck,
+  FaNodeJs,
+  FaPaintbrush,
+  FaReact,
+  FaRotate,
+  FaUsers,
+  FaVuejs,
+  FaWordpress,
+} from 'react-icons/fa6';
+import { SiTailwindcss } from 'react-icons/si';
 import BadgeCard from '../../shared/BadgeCard';
 
 function SkillSection() {
   const HardSkills = [
     {
-      icon: '/svg/React.svg',
+      icon: FaReact,
       label: 'React',
     },
     {
-      icon: '/svg/Tailwindcss.svg',
+      icon: SiTailwindcss,
       label: 'Tailwind',
     },
     {
-      icon: '/svg/Vue.svg',
+      icon: FaVuejs,
       label: 'Vue',
     },
     {
-      icon: '/svg/Figma.svg',
+      icon: FaFigma,
       label: 'Figma',
     },
     {
-      icon: '/svg/SQL.svg',
+      icon: FaDatabase,
       label: 'SQL',
     },
     {
-      icon: '/svg/Node.svg',
+      icon: FaNodeJs,
       label: 'Node',
     },
     {
-      icon: '/svg/Github.svg',
+      icon: FaGithub,
       label: 'Github',
     },
     {
-      icon: '/svg/Git.svg',
+      icon: FaGitAlt,
       label: 'Git',
     },
     {
-      icon: '/svg/Wordpress.svg',
+      icon: FaWordpress,
       label: 'Wordpress',
     },
   ];
 
   const SoftSkills = [
     {
-      icon: '/svg/React.svg',
-      label: 'React',
+      icon: FaComments,
+      label: 'Comunicação',
     },
     {
-      icon: '/svg/React.svg',
-      label: 'React',
+      icon: FaUsers,
+      label: 'Trabalho em Equipe',
     },
     {
-      icon: '/svg/React.svg',
-      label: 'React',
+      icon: FaLightbulb,
+      label: 'Resolução de Problemas',
     },
     {
-      icon: '/svg/React.svg',
-      label: 'React',
+      icon: FaRotate,
+      label: 'Adaptabilidade',
     },
     {
-      icon: '/svg/React.svg',
-      label: 'React',
+      icon: FaListCheck,
+      label: 'Organização',
     },
     {
-      icon: '/svg/React.svg',
-      label: 'React',
+      icon: FaPaintbrush,
+      label: 'Criatividade',
     },
   ];
 

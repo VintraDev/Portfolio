@@ -1,21 +1,22 @@
+import { FaCode, FaPalette, FaScrewdriverWrench } from 'react-icons/fa6';
 import Cards from '../../shared/Cards';
 
 function ServicesSection() {
   const items = [
     {
-      image: 'svg/Design_Icon.svg',
+      icon: FaPalette,
       title: 'Design de Interface',
       description:
         'Criação de interfaces intuitivas e visualmente impactantes que proporcionam experiências memoráveis aos usuários.',
     },
     {
-      image: 'svg/Web_Development_Icon.svg',
+      icon: FaCode,
       title: 'Desenvolvimento Web',
       description:
         'Desenvolvimento de sites e aplicações web modernas, responsivas e otimizadas para performance máxima.',
     },
     {
-      image: 'svg/Maintenance_Icon.svg',
+      icon: FaScrewdriverWrench,
       title: 'Manutenção e Suporte',
       description:
         'Suporte contínuo e manutenção proativa para garantir que seus projetos estejam sempre atualizados.',

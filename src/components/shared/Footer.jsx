@@ -1,3 +1,4 @@
+import { FaGithub, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 
 function Footer() {
@@ -59,40 +60,44 @@ function Footer() {
               Minhas Redes
             </h2>
             <ul className="font-body mt-4 flex gap-4">
-              <li className="hover:scale-105 hover:bg-gray-50/20 p-2 rounded-md transition duration-100">
+              <li className="hover:scale-105 hover:bg-gray-50/20 p-2 rounded-md transition duration-100 flex items-center justify-center">
                 <a
                   target="_blank"
                   href="https://github.com/RosiestSloth"
                   rel="noopener"
+                  className="text-white text-2xl"
                 >
-                  <img src="svg/GitHub.svg" alt="" />
+                  <FaGithub />
                 </a>
               </li>
-              <li className="hover:scale-105 hover:bg-gray-50/20 p-2 rounded-md transition duration-100">
+              <li className="hover:scale-105 hover:bg-gray-50/20 p-2 rounded-md transition duration-100 flex items-center justify-center">
                 <a
                   target="_blank"
                   href="https://instagram.com/vinicius___santos1"
                   rel="noopener"
+                  className="text-white text-2xl"
                 >
-                  <img src="svg/Instagram.svg" alt="" />
+                  <FaInstagram />
                 </a>
               </li>
-              <li className="hover:scale-105 hover:bg-gray-50/20 p-2 rounded-md transition duration-100">
+              <li className="hover:scale-105 hover:bg-gray-50/20 p-2 rounded-md transition duration-100 flex items-center justify-center">
                 <a
                   target="_blank"
                   href="https://wa.me/5562992846807"
                   rel="noopener"
+                  className="text-white text-2xl"
                 >
-                  <img src="svg/WhatsApp.svg" alt="" />
+                  <FaWhatsapp />
                 </a>
               </li>
-              <li className="hover:scale-105 hover:bg-gray-50/20 p-2 rounded-md transition duration-100">
+              <li className="hover:scale-105 hover:bg-gray-50/20 p-2 rounded-md transition duration-100 flex items-center justify-center">
                 <a
                   target="_blank"
                   href="https://linkedin.com/in/rosiestsloth"
                   rel="noopener"
+                  className="text-white text-2xl"
                 >
-                  <img src="svg/LinkedIn.svg" alt="" />
+                  <FaLinkedin />
                 </a>
               </li>
             </ul>

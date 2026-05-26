@@ -1,5 +1,14 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useState } from 'react';
+import {
+  FaEnvelope,
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+  FaLocationDot,
+  FaSpinner,
+  FaWhatsapp,
+} from 'react-icons/fa6';
 
 // ─── CONFIGURAÇÃO DO SERVIÇO DE EMAIL ─────────────────────────────────────────
 // A chave é carregada com segurança de arquivos de ambiente (.env ou .env.local).
@@ -74,25 +83,25 @@ function HeroSection() {
   const socialLinks = [
     {
       name: 'LinkedIn',
-      icon: '/svg/LinkedIn.svg',
+      icon: FaLinkedin,
       link: 'https://linkedin.com/in/rosiestsloth',
       color: 'hover:bg-blue-600',
     },
     {
       name: 'GitHub',
-      icon: '/svg/GitHub.svg',
+      icon: FaGithub,
       link: 'https://github.com/RosiestSloth',
       color: 'hover:bg-gray-800',
     },
     {
       name: 'WhatsApp',
-      icon: '/svg/WhatsApp.svg',
+      icon: FaWhatsapp,
       link: 'https://wa.me/5562992846807',
       color: 'hover:bg-green-500',
     },
     {
       name: 'Instagram',
-      icon: '/svg/Instagram.svg',
+      icon: FaInstagram,
       link: 'https://instagram.com/vinicius___santos1',
       color: 'hover:bg-pink-600',
     },
@@ -117,57 +126,21 @@ function HeroSection() {
           <div className="space-y-6">
             <div className="flex items-center gap-4">
               <div className="size-12 rounded-full bg-(--primary-color)/10 flex items-center justify-center">
-                <svg
-                  className="size-6 text-(--primary-color)"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  role="img"
-                  aria-labelledby="email-icon-title"
-                >
-                  <title id="email-icon-title">Ícone de Email</title>
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
+                <FaEnvelope className="size-6 text-(--primary-color)" />
               </div>
               <div>
                 <h4 className="font-heading font-bold text-(--tertiary-color)">
                   Email
                 </h4>
                 <p className="font-body text-(--tertiary-color)/70 text-sm">
-                  contato@portfolio.com
+                  vs17012005santos@gmail.com
                 </p>
               </div>
             </div>
 
             <div className="flex items-center gap-4">
               <div className="size-12 rounded-full bg-(--primary-color)/10 flex items-center justify-center">
-                <svg
-                  className="size-6 text-(--primary-color)"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  role="img"
-                  aria-labelledby="location-icon-title"
-                >
-                  <title id="location-icon-title">Ícone de Localização</title>
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
+                <FaLocationDot className="size-6 text-(--primary-color)" />
               </div>
               <div>
                 <h4 className="font-heading font-bold text-(--tertiary-color)">
@@ -193,11 +166,7 @@ function HeroSection() {
                   rel="noopener noreferrer"
                   className={`size-10 rounded-full bg-white shadow-sm border border-gray-200 flex items-center justify-center transition-all duration-300 ${social.color} hover:scale-110 group`}
                 >
-                  <img
-                    src={social.icon}
-                    alt={social.name}
-                    className="size-5 group-hover:invert transition-all"
-                  />
+                  <social.icon className="size-5 text-gray-700 group-hover:text-white transition-all" />
                 </a>
               ))}
             </div>
@@ -299,28 +268,7 @@ function HeroSection() {
             >
               {status === 'loading' ? (
                 <>
-                  <svg
-                    className="animate-spin h-5 w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    role="img"
-                    aria-label="Carregando"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
-                  </svg>
+                  <FaSpinner className="animate-spin h-5 w-5 text-white" />
                   Enviando...
                 </>
               ) : (
