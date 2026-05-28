@@ -35,10 +35,10 @@ function Hero() {
           transition={{ ...transition, delay: 0.3 }}
           className="font-body leading-relaxed text-(--tertiary-color)/90"
         >
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Modi veniam
-          omnis totam repellendus alias ad provident illum unde error pariatur
-          placeat voluptatum perferendis assumenda obcaecati, tenetur, ab
-          necessitatibus impedit facere?
+          Sou desenvolvedor Full Stack e designer UI/UX com foco em construir
+          experiências digitais acessíveis, rápidas e centradas no usuário. Meu
+          objetivo é alinhar design visual e engenharia de software para
+          entregar soluções que resolvem problemas reais.
         </motion.p>
       </div>
 

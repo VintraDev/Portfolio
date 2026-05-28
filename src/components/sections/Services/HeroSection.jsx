@@ -71,7 +71,7 @@ function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...transition, delay: 0.4 }}
-            className="flex flex-col mt-4"
+            className="flex flex-col mt-4 gap-4"
           >
             <Cards
               items={items}
