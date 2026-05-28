@@ -19,7 +19,7 @@ const items = [
     icon: FaGaugeHigh,
     title: 'Melhoria Contínua',
     description:
-      'Manter seu website atualizado, seguro e funcionando sem problemas com melhorias contínuase otimização de desempenho.',
+      'Manter seu website atualizado, seguro e funcionando sem problemas com melhorias contínuas e otimização de desempenho.',
   },
 ];
 
