@@ -79,6 +79,7 @@ function Lightbox({ photos, index, onClose }) {
         {/* Botão fechar */}
         <button
           onClick={onClose}
+          type="button"
           className="absolute top-5 right-6 size-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm flex items-center justify-center text-white/80 hover:text-white transition-all z-10 cursor-pointer"
           aria-label="Fechar"
         >
@@ -91,6 +92,7 @@ function Lightbox({ photos, index, onClose }) {
             e.stopPropagation();
             prev();
           }}
+          type="button"
           className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 size-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white transition-all z-10 cursor-pointer"
           aria-label="Anterior"
         >
@@ -132,6 +134,7 @@ function Lightbox({ photos, index, onClose }) {
             e.stopPropagation();
             next();
           }}
+          type="button"
           className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 size-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white transition-all z-10 cursor-pointer"
           aria-label="Próximo"
         >
@@ -153,6 +156,7 @@ function Lightbox({ photos, index, onClose }) {
             <div className="flex gap-1">
               {photos.map((_, i) => (
                 <button
+                  // biome-ignore lint/suspicious/noArrayIndexKey: dots order is static and corresponds to photo index
                   key={i}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -160,6 +164,7 @@ function Lightbox({ photos, index, onClose }) {
                     setIsLoading(true);
                     setCurrent(i);
                   }}
+                  type="button"
                   className={`rounded-full transition-all duration-300 cursor-pointer ${
                     i === current
                       ? 'w-6 h-1.5 bg-white/80'
@@ -194,10 +199,27 @@ function MasonryGrid({ photos, onPhotoClick }) {
     return () => window.removeEventListener('resize', handler);
   }, []);
 
-  // Distribui fotos nas colunas sequencialmente (col 0, 1, 2, 0, 1, 2 ...)
+  // Distribui as fotos dinamicamente para a coluna com a menor altura acumulada
   const columns = Array.from({ length: cols }, () => []);
+  const colHeights = Array(cols).fill(0);
+
   photos.forEach((photo, i) => {
-    columns[i % cols].push({ photo, originalIndex: i });
+    // Localiza a coluna com a menor altura acumulada
+    let shortestColIdx = 0;
+    let minHeight = colHeights[0];
+    for (let c = 1; c < cols; c++) {
+      if (colHeights[c] < minHeight) {
+        minHeight = colHeights[c];
+        shortestColIdx = c;
+      }
+    }
+
+    columns[shortestColIdx].push({ photo, originalIndex: i });
+
+    // Adiciona a altura proporcional (height / width)
+    const ratio = photo.height / photo.width;
+    colHeights[shortestColIdx] +=
+      Number.isNaN(ratio) || !Number.isFinite(ratio) ? 1 : ratio;
   });
 
   return (
@@ -206,6 +228,7 @@ function MasonryGrid({ photos, onPhotoClick }) {
       style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}
     >
       {columns.map((colPhotos, colIdx) => (
+        // biome-ignore lint/suspicious/noArrayIndexKey: columns are static and rely on cols count
         <div key={colIdx} className="flex flex-col gap-4">
           {colPhotos.map(({ photo, originalIndex }, itemIdx) => (
             <MasonryItem
