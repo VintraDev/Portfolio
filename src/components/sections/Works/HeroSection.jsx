@@ -1,23 +1,11 @@
-import { AnimatePresence, motion } from 'motion/react';
-import { useEffect, useState } from 'react';
-import {
-  FaArrowUpRightFromSquare,
-  FaChevronDown,
-  FaFilter,
-} from 'react-icons/fa6';
+import { motion } from 'motion/react';
+import { useState } from 'react';
+import { FaArrowUpRightFromSquare } from 'react-icons/fa6';
+import DropdownFilter from '@/components/shared/DropdownFilter';
 import Cards from '../../shared/Cards';
 
 function HeroSection() {
   const [activeFilter, setActiveFilter] = useState('all');
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (!e.target.closest('[data-dropdown]')) setDropdownOpen(false);
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
 
   const filters = [
     { label: 'Todos', value: 'all', title: 'Todos os trabalhos' },
@@ -63,6 +51,15 @@ function HeroSection() {
       skills: ['React', 'Design', 'Tailwindcss'],
       link: 'https://convite-de-anivers-rio-khaki.vercel.app/',
     },
+    {
+      title: 'Nexus CRM Figma Design',
+      description:
+        'A prototipagem de um projeto focado em CRM da empresa Nexus Company, com design system completo.',
+      category: ['design', 'front-end'],
+      image: '/img/works/nexus-crm.png',
+      skills: ['Figma', 'Design'],
+      link: 'https://www.figma.com/design/isnL6i1wxp2Ix6XSuYmQh0/Avex-Company?node-id=0-1&t=tYdAhajRaU9YXpsJ-1',
+    },
   ];
 
   const filteredCards = cardsData.filter((card) => {
@@ -98,58 +95,11 @@ function HeroSection() {
         </motion.p>
 
         {/* Filtro */}
-        <div data-dropdown className="relative w-max">
-          <motion.button
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ ...transition, delay: 0.3 }}
-            onClick={() => setDropdownOpen(!dropdownOpen)}
-            className="flex items-center gap-3 px-5 py-2.5 rounded-full text-white font-accent font-semibold text-sm bg-(--primary-color) shadow-[0_2px_8px_rgba(0,0,0,0.15)] hover:bg-(--primary-color)/80 transition duration-100 cursor-pointer"
-            type="button"
-          >
-            {/* Ícone funil */}
-            <FaFilter className="w-3.5 h-3.5 shrink-0" />
-            <span className="text-white/60 font-normal">Filtrar por:</span>
-            <span>
-              {filters.find((f) => f.value === activeFilter)?.label ?? 'Todos'}
-            </span>
-            <FaChevronDown
-              className={`w-4 h-4 shrink-0 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`}
-            />
-          </motion.button>
-
-          <AnimatePresence>
-            {dropdownOpen && (
-              <motion.ul
-                initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                transition={{ duration: 0.2, ease: 'easeOut' }}
-                className="absolute top-full mt-2 left-0 w-full z-50 bg-white rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.12)] overflow-hidden border border-gray-100"
-              >
-                {filters.map((filter, index) => (
-                  <li key={index}>
-                    <button
-                      onClick={() => {
-                        setActiveFilter(filter.value);
-                        setDropdownOpen(false);
-                      }}
-                      className={`w-full text-left px-5 py-3 text-sm font-accent font-semibold transition duration-100 cursor-pointer
-                                            ${
-                                              activeFilter === filter.value
-                                                ? 'bg-(--primary-color) text-white pointer-events-none'
-                                                : 'text-(--tertiary-color) hover:bg-gray-200'
-                                            }`}
-                      type="button"
-                    >
-                      {filter.label}
-                    </button>
-                  </li>
-                ))}
-              </motion.ul>
-            )}
-          </AnimatePresence>
-        </div>
+        <DropdownFilter
+          filters={filters}
+          activeFilter={activeFilter}
+          onChange={setActiveFilter}
+        />
 
         <div>
           <p className="text-xs text-(--tertiary-color)/40 font-body mt-6 mb-4 uppercase tracking-widest">
@@ -166,7 +116,7 @@ function HeroSection() {
                     whileHover="visible"
                     href={item.link}
                     target="_blank"
-                    className="w-full h-40 relative overflow-hidden cursor-pointer"
+                    className="w-full aspect-4/2 relative overflow-hidden cursor-pointer"
                     rel="noopener"
                   >
                     <img
