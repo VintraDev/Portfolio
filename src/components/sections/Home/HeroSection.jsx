@@ -43,7 +43,7 @@ function Hero() {
               initial={{ y: 80, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ ...transition, delay: 0.4 }}
-              className="absolute z-10 left-1/2 -translate-x-1/2 bottom-0 object-cover size-130 md:size-160 lg:size-200"
+              className="absolute z-10 left-1/2 -translate-x-1/2 bottom-0 object-cover size-120 md:size-140 lg:size-170"
               src="img/Photograpy.webp"
               alt="Vinicius"
               width={800}
@@ -70,13 +70,13 @@ function Hero() {
         >
           <Link
             to="/contact"
-            className="text-white flex items-center justify-center font-accent font-medium text-md rounded-full hover:bg-black/20 cursor-pointer w-35 h-12 transition duration-100"
+            className="text-(--primary-color) flex items-center justify-center font-accent font-medium text-md rounded-full hover:bg-black/20 cursor-pointer w-35 h-12 transition duration-100"
           >
             Contate-me
           </Link>
           <a
             href="/resume"
-            className="text-white flex items-center justify-center font-accent font-medium text-md rounded-full hover:bg-black/20 cursor-pointer w-35 h-12 transition duration-100"
+            className="text-(--primary-color) flex items-center justify-center font-accent font-medium text-md rounded-full hover:bg-black/20 cursor-pointer w-35 h-12 transition duration-100"
           >
             Currículo
           </a>

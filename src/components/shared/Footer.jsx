@@ -15,7 +15,7 @@ function Footer() {
   return (
     <footer className="w-full flex flex-col items-center justify-center">
       {/* Primeira seção do footer */}
-      <div className="text-white w-full font-body text-md bg-(--primary-color) px-6 md:px-10 lg:px-20 py-8 md:py-12">
+      <div className="text-white text-center w-full font-body text-md bg-(--primary-color) px-6 md:px-10 lg:px-20 py-8 md:py-12">
         <p>
           “Transformando ideias em experiências digitais excepcionais através de
           código limpo, design intuitivo e foco em resultados. Vamos construir o

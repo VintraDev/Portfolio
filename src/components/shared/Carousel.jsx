@@ -11,13 +11,13 @@ import OptimizedImage from '@/components/shared/OptimizedImage';
 
 function Carousel({ items = [] }) {
   const autoplayRef = useRef(
-    Autoplay({ delay: 4500, stopOnInteraction: false, stopOnMouseEnter: true }),
+    Autoplay({ delay: 5000, stopOnInteraction: true, stopOnMouseEnter: true }),
   );
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
-      loop: true,
       align: 'start',
+      loop: items.length > 1,
       skipSnaps: false,
     },
     [autoplayRef.current],
@@ -29,63 +29,80 @@ function Carousel({ items = [] }) {
   const [canScrollNext, setCanScrollNext] = useState(false);
 
   const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
+    emblaApi?.scrollPrev();
   }, [emblaApi]);
 
   const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
+    emblaApi?.scrollNext();
   }, [emblaApi]);
 
   const scrollTo = useCallback(
     (index) => {
-      if (emblaApi) emblaApi.scrollTo(index);
+      emblaApi?.scrollTo(index);
     },
     [emblaApi],
   );
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
+
     setSelectedIndex(emblaApi.selectedScrollSnap());
     setCanScrollPrev(emblaApi.canScrollPrev());
     setCanScrollNext(emblaApi.canScrollNext());
   }, [emblaApi]);
 
+  const onReInit = useCallback(() => {
+    if (!emblaApi) return;
+
+    setScrollSnaps(emblaApi.scrollSnapList());
+    onSelect();
+  }, [emblaApi, onSelect]);
+
   useEffect(() => {
     if (!emblaApi) return;
-    onSelect();
-    setScrollSnaps(emblaApi.scrollSnapList());
+
+    onReInit();
     emblaApi.on('select', onSelect);
-    emblaApi.on('reInit', onSelect);
+    emblaApi.on('reInit', onReInit);
 
     return () => {
       emblaApi.off('select', onSelect);
-      emblaApi.off('reInit', onSelect);
+      emblaApi.off('reInit', onReInit);
     };
-  }, [emblaApi, onSelect]);
+  }, [emblaApi, onReInit, onSelect]);
 
-  // Suporte a navegação por teclado (Setas Esquerda / Direita)
-  const handleKeyDown = (e) => {
-    if (e.key === 'ArrowLeft') {
-      scrollPrev();
-    } else if (e.key === 'ArrowRight') {
-      scrollNext();
-    }
-  };
+  if (items.length === 0) return null;
+
+  const currentProject = String(selectedIndex + 1).padStart(2, '0');
+  const totalProjects = String(items.length).padStart(2, '0');
 
   return (
     <section
-      className="relative w-full focus:outline-none"
-      onKeyDown={handleKeyDown}
+      className="group/carousel relative w-full outline-none"
       aria-roledescription="carousel"
-      aria-label="Carrossel de Projetos"
+      aria-label="Carrossel de projetos"
     >
-      {/* Botões de Navegação Flutuantes (shadcn UI style) */}
-      <div className="flex items-center justify-between gap-3 mb-6">
-        <div className="flex items-center gap-2 z-10">
+      <div className="mb-5 flex items-end justify-between gap-4 border-b border-white/20 pb-4 sm:mb-6">
+        <div>
+          <p className="font-accent text-[10px] font-semibold tracking-[0.2em] text-white/60 uppercase">
+            Projetos selecionados
+          </p>
+          <p className="mt-1 font-heading text-lg font-semibold text-white sm:text-xl">
+            {currentProject}
+            <span className="mx-1.5 text-white/35">/</span>
+            <span className="text-white/60">{totalProjects}</span>
+          </p>
+        </div>
+
+        <nav
+          className="flex items-center gap-2"
+          aria-label="Navegação do carrossel"
+        >
           <button
             onClick={scrollPrev}
             type="button"
-            className="p-3 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed min-w-11 min-h-11 flex items-center justify-center"
+            disabled={!canScrollPrev}
+            className="flex size-11 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white shadow-md backdrop-blur-md transition duration-200 hover:scale-105 hover:bg-white/20 active:scale-95 disabled:cursor-not-allowed disabled:opacity-35"
             aria-label="Projeto anterior"
           >
             <FaChevronLeft className="size-4" />
@@ -94,116 +111,126 @@ function Carousel({ items = [] }) {
           <button
             onClick={scrollNext}
             type="button"
-            className="p-3 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed min-w-11 min-h-11 flex items-center justify-center"
+            disabled={!canScrollNext}
+            className="flex size-11 items-center justify-center rounded-full border border-white/25 bg-white text-(--tertiary-color) shadow-md transition duration-200 hover:scale-105 hover:bg-white/90 active:scale-95 disabled:cursor-not-allowed disabled:opacity-35"
             aria-label="Próximo projeto"
           >
             <FaChevronRight className="size-4" />
           </button>
-        </div>
+        </nav>
       </div>
 
-      {/* Viewport do Embla Carousel */}
-      <div
-        className="overflow-hidden rounded-2xl cursor-grab active:cursor-grabbing p-1"
-        ref={emblaRef}
-      >
-        <div className="flex -ml-4">
-          {items.map((item, index) => (
-            <div
-              key={item.title || index}
-              className="pl-4 min-w-0 flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%]"
-            >
-              <div className="group h-full bg-white/95 backdrop-blur-xl rounded-2xl p-5 border border-gray-200/90 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5">
-                {/* Imagem do Projeto */}
-                <div className="relative overflow-hidden rounded-xl mb-4 bg-gray-100 aspect-video border border-gray-200">
-                  <OptimizedImage
-                    src={item.img}
-                    alt={item.title}
-                    width={640}
-                    height={360}
-                    className="size-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-300" />
-                </div>
+      <div className="relative">
+        <div
+          className="overflow-hidden rounded-[1.35rem] p-1 cursor-grab active:cursor-grabbing"
+          ref={emblaRef}
+        >
+          <div className="-ml-3 flex">
+            {items.map((item, index) => (
+              <div
+                key={item.title || index}
+                className="min-w-0 flex-[0_0_88%] pl-3 sm:flex-[0_0_50%] lg:flex-[0_0_33.333%]"
+              >
+                <article className="group flex h-full min-h-105 flex-col rounded-2xl border border-white/70 bg-white/95 p-3.5 shadow-xl transition duration-300 hover:-translate-y-1 hover:shadow-2xl sm:p-4">
+                  <div className="relative mb-4 aspect-[16/10] overflow-hidden rounded-xl border border-slate-200 bg-slate-100">
+                    <OptimizedImage
+                      src={item.img}
+                      alt={item.title}
+                      width={640}
+                      height={400}
+                      className="size-full object-cover transition duration-500 ease-out group-hover:scale-105"
+                      loading="lazy"
+                      sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 82vw"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-slate-950/25 via-transparent to-transparent" />
+                    <span className="absolute bottom-2.5 left-2.5 rounded-full border border-white/30 bg-slate-950/55 px-2.5 py-1 font-accent text-[9px] font-semibold tracking-[0.14em] text-white uppercase backdrop-blur-sm">
+                      Projeto {String(index + 1).padStart(2, '0')}
+                    </span>
+                  </div>
 
-                {/* Título & Descrição */}
-                <div className="flex-1 flex flex-col mb-4">
-                  <h3 className="font-heading text-lg sm:text-xl font-bold text-(--tertiary-color) group-hover:text-(--primary-color) transition-colors mb-2 line-clamp-1">
-                    {item.title}
-                  </h3>
-                  <p className="font-body text-xs sm:text-sm text-(--tertiary-color)/80 line-clamp-3 leading-relaxed mb-3">
-                    {item.description}
-                  </p>
+                  <div className="mb-4 flex flex-1 flex-col">
+                    <h3 className="mb-2 line-clamp-1 font-heading text-lg font-bold text-(--tertiary-color) transition-colors group-hover:text-(--primary-color) sm:text-xl">
+                      {item.title}
+                    </h3>
+                    <p className="mb-4 line-clamp-3 font-body text-xs leading-relaxed text-(--tertiary-color)/75 sm:text-sm">
+                      {item.description}
+                    </p>
 
-                  {/* Tags Tecnológicas se disponíveis */}
-                  {item.tags && item.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5 mt-auto pt-2">
-                      {item.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-[10px] font-accent font-semibold px-2 py-0.5 rounded-md bg-(--primary-color)/10 text-(--primary-color) border border-(--primary-color)/20"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                    {item.tags?.length > 0 && (
+                      <div className="mt-auto flex flex-wrap gap-1.5">
+                        {item.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="rounded-md border border-(--primary-color)/15 bg-(--primary-color)/8 px-2 py-1 font-accent text-[10px] font-semibold text-(--primary-color)"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
 
-                {/* Botões de Ação */}
-                <div className="pt-3 border-t border-gray-100 flex items-center gap-2">
-                  {item.linkSite && (
-                    <a
-                      href={item.linkSite}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 inline-flex items-center justify-center gap-1.5 font-accent font-semibold text-white bg-(--color-primary) hover:bg-(--color-primary-hover) px-3 py-2 text-xs rounded-full transition-all shadow-xs cursor-pointer min-h-9"
-                      aria-label={`Ver site do projeto ${item.title}`}
-                    >
-                      <FaArrowUpRightFromSquare className="size-3" />
-                      <span>Ver Site</span>
-                    </a>
-                  )}
+                  <div className="flex items-center gap-2 border-t border-slate-100 pt-3">
+                    {item.linkSite && (
+                      <a
+                        href={item.linkSite}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex min-h-10 flex-1 items-center justify-center gap-1.5 rounded-full bg-(--color-primary) px-3 py-2 font-accent text-xs font-semibold text-white shadow-sm transition hover:bg-(--color-primary-hover) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-primary)"
+                        aria-label={`Ver site do projeto ${item.title}`}
+                      >
+                        <FaArrowUpRightFromSquare className="size-3" />
+                        <span>Ver site</span>
+                      </a>
+                    )}
 
-                  {item.linkGitHub && (
-                    <a
-                      href={item.linkGitHub}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-1.5 font-accent font-semibold text-(--tertiary-color) bg-gray-100 hover:bg-gray-200 border border-gray-300 px-3 py-2 text-xs rounded-full transition-all cursor-pointer min-h-9"
-                      aria-label={`Ver repositório do projeto ${item.title} no GitHub`}
-                    >
-                      <FaGithub className="size-3.5" />
-                      <span className="hidden sm:inline">GitHub</span>
-                    </a>
-                  )}
-                </div>
+                    {item.linkGitHub && (
+                      <a
+                        href={item.linkGitHub}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex min-h-10 items-center justify-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3 py-2 font-accent text-xs font-semibold text-(--tertiary-color) transition hover:border-slate-300 hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-primary)"
+                        aria-label={`Ver repositório do projeto ${item.title} no GitHub`}
+                      >
+                        <FaGithub className="size-3.5" />
+                        <span className="hidden sm:inline">GitHub</span>
+                      </a>
+                    )}
+                  </div>
+                </article>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+
+        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-16 bg-linear-to-l from-(--tertiary-color) to-transparent lg:block" />
       </div>
 
-      {/* Indicadores de Pílula (Pagination Dots) com touch target >= 44px */}
-      <div className="flex justify-center items-center gap-1 mt-6">
-        {scrollSnaps.map((_, index) => (
-          <button
-            key={`dot-${index}`}
-            onClick={() => scrollTo(index)}
-            type="button"
-            className="p-3 cursor-pointer focus:outline-none flex items-center justify-center min-w-11 min-h-11"
-            aria-label={`Ir para slide ${index + 1}`}
-          >
-            <span
-              className={`h-2.5 rounded-full transition-all duration-300 block ${
-                index === selectedIndex
-                  ? 'w-8 bg-white shadow-sm'
-                  : 'w-2.5 bg-white/40 hover:bg-white/70'
-              }`}
-            />
-          </button>
-        ))}
+      <div className="mt-5 flex items-center justify-center gap-4 sm:mt-6">
+
+        <nav
+          className="flex items-center"
+          aria-label="Páginas do carrossel"
+        >
+          {scrollSnaps.map((snap, index) => (
+            <button
+              key={`dot-${snap}`}
+              onClick={() => scrollTo(index)}
+              type="button"
+              className="flex w-6 cursor-pointer items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              aria-label={`Ir para projeto ${index + 1}`}
+              aria-current={index === selectedIndex ? 'true' : undefined}
+            >
+              <span
+                className={`block h-1.5 rounded-full transition-all duration-300 ${
+                  index === selectedIndex
+                    ? 'w-7 bg-white shadow-sm'
+                    : 'w-1.5 bg-white/35 hover:bg-white/70'
+                }`}
+              />
+            </button>
+          ))}
+        </nav>
       </div>
     </section>
   );
