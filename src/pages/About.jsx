@@ -1,4 +1,5 @@
 import BeyondTheCodeSection from '@/components/sections/About/BeyondTheCodeSection';
+import CertificatesSection from '@/components/sections/About/CertificatesSection';
 import CTASection from '@/components/sections/About/CTASection';
 import FeatureSection from '@/components/sections/About/FeatureSection';
 import Hero from '@/components/sections/About/HeroSection';
@@ -15,6 +16,7 @@ function About() {
       <div id="habilidades">
         <SkillSection />
       </div>
+      <CertificatesSection />
       <div id="alem-do-codigo">
         <BeyondTheCodeSection />
       </div>

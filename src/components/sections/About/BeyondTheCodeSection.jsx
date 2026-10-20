@@ -27,7 +27,7 @@ function BeyondTheCodeSection() {
     <section className="px-6 md:px-10 lg:px-20 py-12">
       <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-(--primary-color)/10 border border-(--primary-color)/20 text-(--primary-color) text-xs font-accent font-semibold mb-3">
         <FaHeart className="size-3.5" />
-        <span>03 / Além do Código</span>
+        <span>04 / Além do Código</span>
       </div>
       <h2 className="font-heading text-3xl font-bold mb-6 text-(--tertiary-color)">
         Interesses Pessoais & Hobbies
