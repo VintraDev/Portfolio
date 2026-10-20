@@ -7,6 +7,7 @@ function DropdownFilter({
   activeFilter,
   onChange,
   labelPrefix = 'Filtrar por:',
+  fullWidthOnMobile = true,
 }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -24,20 +25,28 @@ function DropdownFilter({
   const transition = { duration: 0.6, ease: [0.16, 1, 0.3, 1] };
 
   return (
-    <div data-dropdown className="relative w-max">
+    <div
+      data-dropdown
+      className={`relative ${fullWidthOnMobile ? 'w-full sm:w-max' : 'w-max'}`}
+    >
       <motion.button
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ ...transition, delay: 0.3 }}
         onClick={() => setDropdownOpen(!dropdownOpen)}
-        className="flex items-center gap-3 px-5 py-2.5 rounded-full text-white font-accent font-semibold text-sm bg-(--color-primary) shadow-[0_2px_8px_rgba(0,0,0,0.15)] hover:bg-(--color-primary-hover) transition duration-100 cursor-pointer"
+        className={`flex items-center gap-3 px-5 py-2.5 rounded-full text-white font-accent font-semibold text-sm bg-(--color-primary) shadow-[0_2px_8px_rgba(0,0,0,0.15)] hover:bg-(--color-primary-hover) transition duration-100 cursor-pointer ${
+          fullWidthOnMobile ? 'w-full justify-between sm:w-auto' : ''
+        }`}
         type="button"
       >
-        <FaFilter className="w-3.5 h-3.5 shrink-0" />
-        {labelPrefix && (
-          <span className="text-white/60 font-normal">{labelPrefix}</span>
-        )}
-        <span>{activeLabel}</span>
+        <div className="flex items-center gap-2">
+          <FaFilter className="w-3.5 h-3.5 shrink-0" />
+
+          {labelPrefix && (
+            <span className="text-white/60 font-normal">{labelPrefix}</span>
+          )}
+          <span>{activeLabel}</span>
+        </div>
         <FaChevronDown
           className={`w-4 h-4 shrink-0 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`}
         />
