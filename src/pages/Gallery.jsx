@@ -4,7 +4,6 @@ import HeroSection from '@/components/sections/Gallery/HeroSection';
 import CTASection from '@/components/sections/Works/CTASection';
 import DropdownFilter from '@/components/shared/DropdownFilter';
 import PageTransition from '@/components/shared/PageTransition';
-import SectionIndicator from '@/components/shared/SectionIndicator';
 import { galleryCategories } from '@/data/galleryData';
 
 function Gallery() {
@@ -23,15 +22,8 @@ function Gallery() {
     })),
   ];
 
-  const sections = [
-    { id: 'galeria', label: 'Galeria', number: '01' },
-    { id: 'contato', label: 'Contato', number: '02' },
-  ];
-
   return (
     <PageTransition>
-      <SectionIndicator sections={sections} />
-
       <main className="min-h-screen bg-gray-50">
         <div id="galeria">
           <HeroSection />

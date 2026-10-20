@@ -1,4 +1,3 @@
-import { motion } from 'motion/react';
 import {
   FaBriefcase,
   FaDownload,
@@ -13,17 +12,8 @@ import {
 } from 'react-icons/fa6';
 import CTASection from '@/components/sections/Works/CTASection';
 import PageTransition from '@/components/shared/PageTransition';
-import SectionIndicator from '@/components/shared/SectionIndicator';
 
 function Resume() {
-  const sections = [
-    { id: 'resumo', label: 'Resumo', number: '01' },
-    { id: 'experiencia', label: 'Experiência', number: '02' },
-    { id: 'projetos', label: 'Projetos', number: '03' },
-    { id: 'formacao', label: 'Formação', number: '04' },
-    { id: 'competencias', label: 'Competências', number: '05' },
-  ];
-
   const experiences = [
     {
       role: 'Desenvolvedor Web Freelancer',
@@ -66,8 +56,6 @@ function Resume() {
 
   return (
     <PageTransition>
-      <SectionIndicator sections={sections} />
-
       <main className="min-h-screen bg-gray-50/50 pb-16">
         <section className="px-6 md:px-10 lg:px-20 py-12 bg-linear-to-b from-white to-gray-50 border-b border-gray-200/80 relative overflow-hidden">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
