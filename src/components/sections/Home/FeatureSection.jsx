@@ -27,16 +27,15 @@ function Feature() {
         'Um sistema de coleta de feedbacks, com um design moderno e responsivo, utilizando React e Tailwind CSS.',
       linkSite: 'https://feedback-analytics.vercel.app/',
       linkGitHub: 'https://github.com/RosiestSloth/Ordem-de-Servicos',
-      tags: ['React', 'Tailwind CSS', 'REST API'],
+      tags: ['React', 'Tailwind CSS', 'Vite'],
     },
     {
-      img: 'img/cards/Invitation.webp',
-      title: 'Convite Interativo',
+      img: 'img/avex-crm.webp',
+      title: 'AvexCRM',
       description:
-        'Aplicação web interativa para convites personalizados com animações fluidas e confirmação de presença.',
-      linkSite: 'https://i-phone-17-website.vercel.app/',
-      linkGitHub: 'https://github.com/RosiestSloth',
-      tags: ['React', 'Framer Motion', 'Design System'],
+        'Um sistema de CRM adaptado as necessidades da empresa Avex, moderno, responsivo, Next.js, Tailwind CSS, Prisma ORM, Postgresql.',
+      linkSite: 'https://avex-crm.vercel.app',
+      tags: ['Next.js', 'Tailwind CSS', 'Prisma', 'Postgres', 'CASL'],
     },
   ];
 
