@@ -1,9 +1,8 @@
 import { motion } from 'motion/react';
 import { useState } from 'react';
-import { FaArrowUpRightFromSquare } from 'react-icons/fa6';
+import { FaArrowUpRightFromSquare, FaGraduationCap } from 'react-icons/fa6';
 import DropdownFilter from '@/components/shared/DropdownFilter';
 import OptimizedImage from '@/components/shared/OptimizedImage';
-import Cards from '../../shared/Cards';
 
 function HeroSection() {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -13,6 +12,11 @@ function HeroSection() {
     { label: 'Front End', value: 'front-end', title: 'Trabalhos Front End' },
     { label: 'Design', value: 'design', title: 'Trabalhos de Design' },
     { label: 'Full Stack', value: 'full-stack', title: 'Trabalhos Full Stack' },
+    {
+      label: 'Educacionais',
+      value: 'educational',
+      title: 'Projetos educacionais · Rocketseat',
+    },
   ];
 
   const cardsData = [
@@ -50,7 +54,7 @@ function HeroSection() {
       category: ['design', 'front-end'],
       image: '/img/cards/Invitation.webp',
       skills: ['React', 'Design', 'Tailwindcss'],
-      link: 'https://convite-de-anivers-rio-khaki.vercel.app/',
+      link: 'https://github.com/VintraDev/Convite-de-Anivers-rio',
     },
     {
       title: 'Nexus CRM Figma Design',
@@ -60,6 +64,56 @@ function HeroSection() {
       image: '/img/works/nexus-crm.webp',
       skills: ['Figma', 'Design'],
       link: 'https://www.figma.com/design/isnL6i1wxp2Ix6XSuYmQh0/Avex-Company?node-id=0-1&t=tYdAhajRaU9YXpsJ-1',
+    },
+    {
+      title: 'DevRoast · NLW Operator',
+      description:
+        'Aplicação de revisão de código com IA, editor com destaque de sintaxe, modos de feedback e ranking global.',
+      category: ['educational', 'full-stack'],
+      image: '/img/rocketseat/NLW_DevRoast.webp',
+      skills: ['Next.js', 'TypeScript', 'Gemini AI'],
+      educational: true,
+      link: 'https://github.com/VintraDev/rocketseat-vinicius-projects/tree/main/IA/NLW-Operator-RocketSeat',
+    },
+    {
+      title: 'Board App',
+      description:
+        'Quadro de acompanhamento de issues com fluxo de trabalho, comentários, reações e rotas modais.',
+      category: ['educational', 'full-stack'],
+      image: '/img/rocketseat/board-app.webp',
+      skills: ['Next.js', 'Drizzle', 'React Query'],
+      educational: true,
+      link: 'https://github.com/VintraDev/rocketseat-vinicius-projects/tree/main/Next/board-app',
+    },
+    {
+      title: 'Dev Links',
+      description:
+        'Página de links para desenvolvedores com tema personalizável e conteúdo gerenciável via Prismic.',
+      category: ['educational', 'front-end'],
+      image: '/img/rocketseat/dev-links.webp',
+      skills: ['Next.js', 'Prismic', 'Tailwind CSS'],
+      educational: true,
+      link: 'https://github.com/VintraDev/rocketseat-vinicius-projects/tree/main/Next/dev-links',
+    },
+    {
+      title: 'Mundo Pet',
+      description:
+        'Agenda de pet shop com cadastro e gestão de horários, validação de formulários e persistência de dados.',
+      category: ['educational', 'full-stack'],
+      image: '/img/rocketseat/pet-shop.webp',
+      skills: ['Next.js', 'Prisma', 'Zod'],
+      educational: true,
+      link: 'https://github.com/VintraDev/rocketseat-vinicius-projects/tree/main/Next/pet-shop',
+    },
+    {
+      title: 'Site Blog',
+      description:
+        'Blog técnico com conteúdo em Markdown, busca e compartilhamento de artigos.',
+      category: ['educational', 'front-end'],
+      image: '/img/rocketseat/site-blog.webp',
+      skills: ['Next.js', 'Contentlayer', 'Tailwind CSS'],
+      educational: true,
+      link: 'https://github.com/VintraDev/rocketseat-vinicius-projects/tree/main/Next/site-blog',
     },
   ];
 
@@ -106,77 +160,73 @@ function HeroSection() {
           <p className="text-xs text-(--tertiary-color)/40 font-body mt-6 mb-4 uppercase tracking-widest">
             {filters.find((f) => f.value === activeFilter)?.title}
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-            <Cards
-              items={filteredCards}
-              className="flex-col"
-              renderContent={(item) => (
-                <>
-                  <motion.a
-                    initial="hidden"
-                    whileHover="visible"
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {filteredCards.map((item, index) => (
+              <motion.article
+                key={item.title}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, delay: index * 0.05 }}
+                whileHover={{ y: -4 }}
+                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xs transition-shadow duration-300 hover:border-(--primary-color)/30 hover:shadow-xl"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden bg-(--tertiary-color)">
+                  <OptimizedImage
+                    className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    src={item.image}
+                    alt={`Prévia do projeto ${item.title}`}
+                    width={720}
+                    height={450}
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-(--tertiary-color)/75 via-transparent to-transparent" />
+                  <span className="absolute bottom-4 left-4 rounded-full border border-white/30 bg-white/90 px-3 py-1 font-accent text-[11px] font-semibold text-(--tertiary-color) shadow-sm backdrop-blur-sm">
+                    {item.educational
+                      ? 'Rocketseat · Educacional'
+                      : 'Projeto selecionado'}
+                  </span>
+                </div>
+
+                <div className="flex flex-1 flex-col p-5">
+                  {item.educational && (
+                    <span className="mb-3 inline-flex w-max items-center gap-1.5 rounded-full bg-(--primary-color)/10 px-2.5 py-1 font-accent text-[11px] font-semibold text-(--primary-color)">
+                      <FaGraduationCap className="size-3" />
+                      Projeto educacional
+                    </span>
+                  )}
+                  <h3 className="font-heading text-xl font-bold text-(--tertiary-color)">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 font-body text-sm leading-relaxed text-(--tertiary-color)/75">
+                    {item.description}
+                  </p>
+
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {item.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="rounded-md border border-(--primary-color)/15 bg-(--primary-color)/7 px-2.5 py-1 font-accent text-[11px] font-medium text-(--tertiary-color)/80"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+
+                  <a
                     href={item.link}
                     target="_blank"
-                    className="w-full aspect-4/2 relative overflow-hidden cursor-pointer"
-                    rel="noopener"
-                    aria-label={`Ver projeto ${item.title}`}
+                    rel="noopener noreferrer"
+                    className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-(--primary-color) px-4 py-3 font-accent text-sm font-bold text-white transition-colors hover:bg-(--primary-color-hover) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--primary-color)"
+                    aria-label={`${item.educational ? 'Ver código' : 'Abrir projeto'} ${item.title} em uma nova aba`}
                   >
-                    <OptimizedImage
-                      className="absolute inset-0 size-full shadow-md object-cover border border-white rounded-tr-md rounded-tl-md"
-                      src={item.image}
-                      alt={item.title}
-                      width={600}
-                      height={300}
-                      loading="lazy"
-                    />
-                    <motion.div
-                      variants={{
-                        hidden: { opacity: 0 },
-                        visible: { opacity: 1 },
-                      }}
-                      className="bg-black/80 absolute inset-0 flex items-center justify-center"
-                    >
-                      <motion.div
-                        variants={{
-                          hidden: { scale: 0 },
-                          visible: { scale: 1 },
-                        }}
-                        className="text-white text-3xl"
-                      >
-                        <FaArrowUpRightFromSquare />
-                      </motion.div>
-                    </motion.div>
-                  </motion.a>
-
-                  <div className="p-4 flex flex-col gap-2">
-                    <div className="flex flex-row gap-2 items-center justify-center">
-                      {item.skills.map((skill) => (
-                        <span
-                          key={skill}
-                          className="bg-(--primary-color) text-white text-xs font-medium px-2 py-1 rounded w-full text-center"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                    <h3 className="font-heading text-lg font-semibold mt-4 text-(--tertiary-color)">
-                      {item.title}
-                    </h3>
-                    <p className="text-(--tertiary-color)/90 mt-2 font-body">
-                      {item.description}
-                    </p>
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-neutral-600 font-body hover:underline block"
-                    >
-                      Visualizar Projeto
-                    </a>
-                  </div>
-                </>
-              )}
-            />
+                    {item.educational
+                      ? 'Ver código no GitHub'
+                      : 'Abrir projeto'}
+                    <FaArrowUpRightFromSquare className="size-3.5" />
+                  </a>
+                </div>
+              </motion.article>
+            ))}
           </div>
         </div>
       </div>
