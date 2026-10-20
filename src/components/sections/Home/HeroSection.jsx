@@ -5,8 +5,8 @@ function Hero() {
   const transition = { duration: 0.8, ease: [0.16, 1, 0.3, 1] };
 
   return (
-    <section className="overflow-hidden px-4 md:px-10">
-      <div className="relative h-screen min-h-220 md:min-h-240">
+    <section className="overflow-hidden px-0 md:px-10">
+      <div className="relative mx-4 h-screen min-h-220 md:mx-0 md:min-h-240">
         <motion.h1
           initial={{ opacity: 0, y: -25 }}
           animate={{ opacity: 1, y: 0 }}
@@ -43,7 +43,7 @@ function Hero() {
               initial={{ y: 80, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ ...transition, delay: 0.4 }}
-              className="absolute z-10 left-1/2 -translate-x-1/2 bottom-0 h-auto w-120 max-w-none md:w-210 lg:w-255"
+              className="absolute z-10 left-1/2 -translate-x-1/2 bottom-0 h-auto w-140 max-w-none md:w-210 lg:w-255"
               src="img/Photograpy.webp"
               alt="Vinicius"
               width={800}
