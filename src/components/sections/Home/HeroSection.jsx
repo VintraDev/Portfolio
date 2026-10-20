@@ -43,7 +43,7 @@ function Hero() {
               initial={{ y: 80, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ ...transition, delay: 0.4 }}
-              className="absolute z-10 left-1/2 -translate-x-1/2 bottom-0 object-cover size-120 md:size-140 lg:size-170"
+              className="absolute z-10 left-1/2 -translate-x-1/2 bottom-0 h-auto w-180 max-w-none md:w-210 lg:w-255"
               src="img/Photograpy.webp"
               alt="Vinicius"
               width={800}
