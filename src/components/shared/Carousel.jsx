@@ -122,7 +122,7 @@ function Carousel({ items = [] }) {
 
       <div className="relative">
         <div
-          className="overflow-hidden rounded-[1.35rem] p-1 cursor-grab active:cursor-grabbing"
+          className="overflow-hidden rounded-[1.35rem] p-1 cursor-grab active:cursor-grabbing select-none"
           ref={emblaRef}
         >
           <div className="-ml-3 flex">
@@ -207,11 +207,7 @@ function Carousel({ items = [] }) {
       </div>
 
       <div className="mt-5 flex items-center justify-center gap-4 sm:mt-6">
-
-        <nav
-          className="flex items-center"
-          aria-label="Páginas do carrossel"
-        >
+        <nav className="flex items-center" aria-label="Páginas do carrossel">
           {scrollSnaps.map((snap, index) => (
             <button
               key={`dot-${snap}`}
