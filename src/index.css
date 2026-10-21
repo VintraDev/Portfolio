@@ -88,3 +88,83 @@
 .font-poppins {
   font-family: var(--font-accent);
 }
+
+@keyframes reveal-down {
+  from {
+    transform: translateY(-25px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-left {
+  from {
+    transform: translateX(-30px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes reveal-right {
+  from {
+    transform: translateX(30px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    transform: translateY(20px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-scale {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.reveal-down {
+  animation: reveal-down 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.reveal-left {
+  animation: reveal-left 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.reveal-right {
+  animation: reveal-right 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.reveal-up {
+  animation: reveal-up 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.reveal-scale {
+  animation: reveal-scale 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.reveal-delay-1 {
+  animation-delay: 200ms;
+}
+.reveal-delay-2 {
+  animation-delay: 400ms;
+}
+.reveal-delay-3 {
+  animation-delay: 550ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-down,
+  .reveal-left,
+  .reveal-right,
+  .reveal-up,
+  .reveal-scale {
+    animation: none;
+  }
+}

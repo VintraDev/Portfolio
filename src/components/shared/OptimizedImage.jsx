@@ -35,8 +35,7 @@ function OptimizedImage({
         width={width}
         height={height}
         loading={computedLoading}
-        // @ts-expect-error fetchpriority é suportado em navegadores modernos e pelo Chrome DevTools
-        fetchpriority={fetchPriority}
+        fetchPriority={fetchPriority}
         decoding={decoding}
         className={className}
         {...rest}

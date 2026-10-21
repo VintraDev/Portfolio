@@ -13,6 +13,9 @@
   <link rel="shortcut icon" href="/img/Logo_White.webp" />
   <link rel="apple-touch-icon" href="/img/Logo_White.webp" />
 
+  <!-- A imagem principal é o LCP em mobile; iniciamos o download antes do JS. -->
+  <link rel="preload" as="image" href="/img/Photograpy.webp" fetchpriority="high" />
+
   <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Vinicius Santos — Desenvolvedor Web Full Stack" />

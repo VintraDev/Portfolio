@@ -1,9 +1,17 @@
-import Feature from '@/components/sections/Home/FeatureSection';
+import { lazy, Suspense } from 'react';
 import Hero from '@/components/sections/Home/HeroSection';
-import Journey from '@/components/sections/Home/JourneySection';
-import ServicesSection from '@/components/sections/Home/ServicesSection';
-import StatsSection from '@/components/sections/Home/StatsSection';
 import PageTransition from '@/components/shared/PageTransition';
+
+// Mantém o JavaScript crítico limitado ao hero; o restante é baixado em chunks
+// separados logo após a primeira renderização.
+const Feature = lazy(() => import('@/components/sections/Home/FeatureSection'));
+const Journey = lazy(() => import('@/components/sections/Home/JourneySection'));
+const StatsSection = lazy(
+  () => import('@/components/sections/Home/StatsSection'),
+);
+const ServicesSection = lazy(
+  () => import('@/components/sections/Home/ServicesSection'),
+);
 
 function Home() {
   return (
@@ -11,18 +19,20 @@ function Home() {
       <div id="inicio">
         <Hero />
       </div>
-      <div id="destaques">
-        <Feature />
-      </div>
-      <div id="trajetoria">
-        <Journey />
-      </div>
-      <div id="metricas">
-        <StatsSection />
-      </div>
-      <div id="servicos">
-        <ServicesSection />
-      </div>
+      <Suspense fallback={null}>
+        <div id="destaques">
+          <Feature />
+        </div>
+        <div id="trajetoria">
+          <Journey />
+        </div>
+        <div id="metricas">
+          <StatsSection />
+        </div>
+        <div id="servicos">
+          <ServicesSection />
+        </div>
+      </Suspense>
     </PageTransition>
   );
 }
